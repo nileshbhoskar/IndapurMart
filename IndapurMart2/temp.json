@@ -1,0 +1,118 @@
+/*
+{
+  "statusCode": 200,
+  "result": [
+    {
+      "1": {
+        "VillageID": 1,
+        "enVillageName": "Indapur",
+        "marVillageName": "इंदापूर",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "2": {
+        "VillageID": 3,
+        "enVillageName": "Pimpale",
+        "marVillageName": "पिंपळे",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "3": {
+        "VillageID": 4,
+        "enVillageName": "Madanwadi",
+        "marVillageName": "मदनवाडी",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "4": {
+        "VillageID": 5,
+        "enVillageName": "Takrarwadi",
+        "marVillageName": "तक्रारवाडी",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "5": {
+        "VillageID": 6,
+        "enVillageName": "Bhigvan",
+        "marVillageName": "भिगवण",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "6": {
+        "VillageID": 8,
+        "enVillageName": "Dikasal",
+        "marVillageName": "डिकसळ",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "7": {
+        "VillageID": 23,
+        "enVillageName": "Palasdeo",
+        "marVillageName": "पळसदेव",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "_id": "599bc4778a1b93dba029f2f7"
+    }
+  ]
+}
+*/
+
+
+{
+  "statusCode": 200,
+  "result": [
+    {
+      "1": {
+        "VillageID": 1,
+        "enVillageName": "Indapur",
+        "marVillageName": "इंदापूर",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "2": {
+        "VillageID": 3,
+        "enVillageName": "Pimpale",
+        "marVillageName": "पिंपळे",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "3": {
+        "VillageID": 4,
+        "enVillageName": "Madanwadi",
+        "marVillageName": "मदनवाडी",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "4": {
+        "VillageID": 5,
+        "enVillageName": "Takrarwadi",
+        "marVillageName": "तक्रारवाडी",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "5": {
+        "VillageID": 6,
+        "enVillageName": "Bhigvan",
+        "marVillageName": "भिगवण",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "6": {
+        "VillageID": 8,
+        "enVillageName": "Dikasal",
+        "marVillageName": "डिकसळ",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "7": {
+        "VillageID": 23,
+        "enVillageName": "Palasdeo",
+        "marVillageName": "पळसदेव",
+        "talukaID": 1,
+        "isActive": true
+      },
+      "_id": "599bc4778a1b93dba029f2f7"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_item_title_height">36dp</dimen>
+    <dimen name="sub_category_height">86dp</dimen>
+    <dimen name="sub_title_height">56dp</dimen>
+    <dimen name="sub_category_iv_width">86dp</dimen>
+    <dimen name="banner_iv_height">200dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="expandable_tb_height">256dp</dimen>
+
+    <dimen name="expandable_title_margin_left">48dp</dimen>
+    <dimen name="expandable_title_margin_right">64dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+
+
+</resources>

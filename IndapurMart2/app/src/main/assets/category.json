@@ -1,0 +1,478 @@
+[
+  {
+    "categoryID": 1,
+    "enCategoryName": "Important Services",
+    "marCategoryName": "महत्वाच्या सुविधा",
+    "isActive": true,
+    "imgURL": "",
+    "subCategory": [
+      {
+        "subCatID": 1,
+        "enSubCatName": "Police Station",
+        "marSubCatName": "पोलीस स्टेशन",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 2,
+        "enSubCatName": "Ambulance",
+        "marSubCatName": "अँब्युलन्स",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 3,
+        "enSubCatName": "Nagar Palika",
+        "marSubCatName": "नगर पालिका",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 4,
+        "enSubCatName": "Agnishamak",
+        "marSubCatName": "अग्निशामक",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 5,
+        "enSubCatName": "Government Hospital",
+        "marSubCatName": "सरकारी दवाखाने",
+        "isActive": true,
+        "imgURL": ""
+      }
+    ]
+  },
+  {
+    "categoryID": 2,
+    "enCategoryName": "Hospitality",
+    "marCategoryName": "हॉस्पिटॅलिटी ",
+    "isActive": true,
+    "imgURL": "",
+    "subCategory": [
+      {
+        "subCatID": 1,
+        "enSubCatName": "Doctor",
+        "marSubCatName": "डॉक्टर",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 2,
+        "enSubCatName": "Medical",
+        "marSubCatName": "मेडिकल",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 3,
+        "enSubCatName": "Ambulance",
+        "marSubCatName": "अँब्युलन्स",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 4,
+        "enSubCatName": "Pathology Lab",
+        "marSubCatName": "पॅथॉलॉजि लॅब",
+        "isActive": true,
+        "imgURL": ""
+      }
+    ]
+  },
+  {
+    "categoryID": 3,
+    "enCategoryName": "Shops",
+    "marCategoryName": "दुकाने",
+    "isActive": true,
+    "imgURL": "",
+    "subCategory": [
+      {
+        "subCatID": 1,
+        "enSubCatName": "Kirana",
+        "marSubCatName": "किराणा",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 2,
+        "enSubCatName": "Mobile Shop",
+        "marSubCatName": "मोबाईल  शॉपी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 3,
+        "enSubCatName": "General Stores",
+        "marSubCatName": "जनरल स्टोअर्स",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 4,
+        "enSubCatName": "Saloon And Beauty Parlour",
+        "marSubCatName": "सलून & ब्युटी पार्लर ",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 5,
+        "enSubCatName": "Electronics & Electrical",
+        "marSubCatName": "इलेक्ट्रॉनिक्स & इलेक्ट्रिकल",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 6,
+        "enSubCatName": "Printing",
+        "marSubCatName": "प्रिंटिंग",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 7,
+        "enSubCatName": "Photo shop",
+        "marSubCatName": "फोटो शॉपी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 8,
+        "enSubCatName": "Footwear",
+        "marSubCatName": "चप्पल & बूट",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 9,
+        "enSubCatName": "Jewellers",
+        "marSubCatName": "ज्वेलर्स",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 10,
+        "enSubCatName": "Clothes",
+        "marSubCatName": "कपडे",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 11,
+        "enSubCatName": "Telar",
+        "marSubCatName": "टेलर",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 12,
+        "enSubCatName": "Laundry",
+        "marSubCatName": "लौंड्री",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 13,
+        "enSubCatName": "Automobiles & Garage",
+        "marSubCatName": "ऑटोमोबाइल्स & गॅरेज",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 14,
+        "enSubCatName": "Matan Shopi",
+        "marSubCatName": "मटण शॉपी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 15,
+        "enSubCatName": "Cyber Cafe",
+        "marSubCatName": "सायब कॅफे",
+        "isActive": true,
+        "imgURL": ""
+      }
+    ]
+  },
+  {
+    "categoryID": 4,
+    "enCategoryName": "Sheti",
+    "marCategoryName": "शेती",
+    "isActive": true,
+    "imgURL": "",
+    "subCategory": [
+      {
+        "subCatID": 1,
+        "enSubCatName": "Bi biyane khate",
+        "marSubCatName": "बी बियाणे खते",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 2,
+        "enSubCatName": "Avjare",
+        "marSubCatName": "अवजारे",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 3,
+        "enSubCatName": "Shetichi Upkarane",
+        "marSubCatName": "शेतीची उपकरणे",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 4,
+        "enSubCatName": "Vyapari",
+        "marSubCatName": "व्यापारी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 5,
+        "enSubCatName": "Narsary",
+        "marSubCatName": "नर्सरी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 6,
+        "enSubCatName": "Tracter Other Equipment",
+        "marSubCatName": "ट्रॅक्टर  आणि इतर उपकरणे",
+        "isActive": true,
+        "imgURL": ""
+      }
+    ]
+  },
+  {
+    "categoryID": 5,
+    "enCategoryName": "Shubh Vivah",
+    "marCategoryName": "शुभ विवाह",
+    "isActive": true,
+    "imgURL": "",
+    "subCategory": [
+      {
+        "subCatID": 1,
+        "enSubCatName": "Mangal Karyalay",
+        "marSubCatName": "मंगल कार्यालय",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 2,
+        "enSubCatName": "Lagn Patrika",
+        "marSubCatName": "लग्न पत्रिका",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 3,
+        "enSubCatName": "Aachari",
+        "marSubCatName": "आचारी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 4,
+        "enSubCatName": "Basta",
+        "marSubCatName": "बस्ता",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 5,
+        "enSubCatName": "Band & DJ",
+        "marSubCatName": "बँड & DJ",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 6,
+        "enSubCatName": "Brahman",
+        "marSubCatName": "ब्राह्मण",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 7,
+        "enSubCatName": "Ghoda",
+        "marSubCatName": "घोडा",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 8,
+        "enSubCatName": "Phetawala",
+        "marSubCatName": "फेटावाला",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 9,
+        "enSubCatName": "Har",
+        "marSubCatName": "हार",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 10,
+        "enSubCatName": "Mandap",
+        "marSubCatName": "मंडप",
+        "isActive": true,
+        "imgURL": ""
+      }
+    ]
+  },
+  {
+    "categoryID": 6,
+    "enCategoryName": "Bandkam",
+    "marCategoryName": "बांधकाम",
+    "isActive": true,
+    "imgURL": "",
+    "subCategory": [
+      {
+        "subCatID": 1,
+        "enSubCatName": "Architect",
+        "marSubCatName": "आर्किटेक्ट",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 2,
+        "enSubCatName": "Thekedar",
+        "marSubCatName": "ठेकेदार",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 3,
+        "enSubCatName": "POP",
+        "marSubCatName": "पी ओ पी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 4,
+        "enSubCatName": "Vita",
+        "marSubCatName": "विटा",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 5,
+        "enSubCatName": "Valu",
+        "marSubCatName": "वाळू",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 6,
+        "enSubCatName": "Cement",
+        "marSubCatName": "सिमेंट",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 7,
+        "enSubCatName": "Steel",
+        "marSubCatName": "स्टील",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 8,
+        "enSubCatName": "Kach",
+        "marSubCatName": "काच",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 9,
+        "enSubCatName": "Marbal",
+        "marSubCatName": "मार्बल",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 10,
+        "enSubCatName": "Farniture",
+        "marSubCatName": "फर्निचर",
+        "isActive": true,
+        "imgURL": ""
+      }
+    ]
+  },
+  {
+    "categoryID": 7,
+    "enCategoryName": "Hotels",
+    "marCategoryName": "हॉटेल्स",
+    "isActive": true,
+    "imgURL": "",
+    "subCategory": [
+      {
+        "subCatID": 1,
+        "enSubCatName": "Family Restaurant",
+        "marSubCatName": "फॅमिली रेस्टॉरंट",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 2,
+        "enSubCatName": "Dhaba",
+        "marSubCatName": "ढाबा",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 3,
+        "enSubCatName": "Bear bar",
+        "marSubCatName": "बिअर बार",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 4,
+        "enSubCatName": "Bhel bhatta",
+        "marSubCatName": "भेळ भत्ता",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 5,
+        "enSubCatName": "Sweet Home",
+        "marSubCatName": "स्वीट होम",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 6,
+        "enSubCatName": "Ice Cream",
+        "marSubCatName": "आईसक्रीम ",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 7,
+        "enSubCatName": "Bakery",
+        "marSubCatName": "बेकरी",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 8,
+        "enSubCatName": "Khanval",
+        "marSubCatName": "खानावळ",
+        "isActive": true,
+        "imgURL": ""
+      },
+      {
+        "subCatID": 9,
+        "enSubCatName": "Marbal",
+        "marSubCatName": "मार्बल",
+        "isActive": true,
+        "imgURL": ""
+      }
+    ]
+  }
+]

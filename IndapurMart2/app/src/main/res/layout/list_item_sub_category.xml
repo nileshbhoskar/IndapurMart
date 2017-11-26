@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_sub_sub_category"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_sub_category"
+        android:layout_width="@dimen/sub_category_iv_width"
+        android:layout_height="@dimen/sub_category_height"
+        android:background="@drawable/ic_android_ui" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sub_category_height"
+        android:layout_marginLeft="@dimen/margin_8"
+        android:layout_marginRight="@dimen/margin_8"
+        android:layout_toRightOf="@id/iv_sub_category"
+        android:layout_toLeftOf="@id/iv_lisc_call"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_title"
+            android:textSize="@dimen/text_size_16"
+            android:paddingLeft="@dimen/fab_margin" />
+
+        <TextView
+            android:id="@+id/tv_sub_category_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_title"
+            android:paddingLeft="@dimen/fab_margin" />
+
+        <TextView
+            android:id="@+id/tv_contact_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_title"
+            android:paddingLeft="@dimen/fab_margin" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_lisc_call"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_8"
+        android:src="@android:drawable/ic_menu_call" />
+</RelativeLayout>
