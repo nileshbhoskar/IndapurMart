@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.text.TextUtils;
@@ -35,7 +35,6 @@ import com.google.gson.Gson;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +69,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     private Context mContext;
     private static final String LI_CATEGORY = "Select category";
     private static final String LI_SUB_CATEGORY = "Select sub category";
+    private static final String LI_SELECT_VILLAGE = "Select Village";
 
     public void hideSoftKeyboard(Activity activity, EditText editText) {
         InputMethodManager inputMethodManager =
@@ -106,10 +106,20 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         spinnerVillage.setOnItemSelectedListener(this);
         loadCategoryData();
         loadVillageData();
-        List<String> villageList = new ArrayList();
-        villageList.add(LI_SUB_CATEGORY);
-        spinnerSubCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, villageList));
+        List<String> defaultList = new ArrayList();
+        defaultList.add(LI_SUB_CATEGORY);
+        ArrayAdapter<String> defaultAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
+        spinnerSubCategory.setAdapter(defaultAdapter);
 
+        defaultList = new ArrayList();
+        defaultList.add(LI_CATEGORY);
+        defaultAdapter =new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
+                spinnerCategory.setAdapter(defaultAdapter);
+
+        defaultList = new ArrayList();
+        defaultList.add(LI_SELECT_VILLAGE);
+        defaultAdapter =new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
+        spinnerVillage.setAdapter(defaultAdapter);
     }
 
     @Override
@@ -216,25 +226,50 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        if (view.getId() == R.id.spinner_category) {
-            String categoryName = spinnerCategory.getSelectedItem().toString();
-            Category category1 = null;
-            for (Category category : mCategoryData) {
-                if (category.getMarCategoryName().equals(categoryName)) {
-                    category1 = category;
-                    break;
-                }
-            }
+        Log.i(TAG, "onItemSelected::");
+        Log.i(TAG, "onItemSelected::getId::" + Integer.toHexString(view.getId()));
+        Log.i(TAG, "onItemSelected::id::" + Integer.toHexString(R.id.spinner_category));
 
-            if (mSubCategoryList == null) {
-                mSubCategoryList = new ArrayList<>();
-            }
-            for (SubCategory subCategory : category1.getSubCategory()) {
-                mSubCategoryList.add(subCategory.getMarSubCatName());
-            }
-            mSubCategoryList.add(0, LI_SUB_CATEGORY);
-            spinnerSubCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mSubCategoryData));
+        switch (adapterView.getId()) {
+            case R.id.spinner_category:
+                String categoryName = spinnerCategory.getSelectedItem().toString();
+                if (!categoryName.equals(LI_CATEGORY)) {
+                    Log.i(TAG, "onItemSelected::inside if");
+                    Category category1 = null;
+                    for (Category category : mCategoryData) {
+                        if (category.getMarCategoryName().equals(categoryName)) {
+                            category1 = category;
+                            break;
+                        }
+                    }
+
+                    if (category1 == null) {
+                        Log.e(TAG, "onItemSelected:: null category1");
+                        return;
+                    }
+                    if (mSubCategoryList == null) {
+                        mSubCategoryList = new ArrayList<>();
+                    }
+                    for (SubCategory subCategory : category1.getSubCategory()) {
+                        mSubCategoryList.add(subCategory.getMarSubCatName());
+                    }
+                    Log.i(TAG, "onItemSelected::mSubCategoryList::" + mSubCategoryList.toString());
+                    Log.i(TAG, "onItemSelected::category1::" + category1.toString());
+                    Log.i(TAG, "onItemSelected::");
+                    mSubCategoryList.add(0, LI_SUB_CATEGORY);
+                    spinnerSubCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mSubCategoryList));
+                } else {
+                    Log.i(TAG, "onItemSelected::inside else");
+                }
+                break;
+            case R.id.spinner_sub_category:
+
+                break;
+            case R.id.spinner_village:
+
+                break;
         }
+
     }
 
     @Override
