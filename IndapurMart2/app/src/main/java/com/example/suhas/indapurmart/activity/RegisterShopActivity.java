@@ -63,7 +63,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     private CustomKeyboardView mKeyboardView;
     private Keyboard mKeyboard;
     private Category[] mCategoryData;
-    private SubCategory[] mSubCategoryData;
+    //private SubCategory[] mSubCategoryData;
     private List<String> mCategoryList;
     private List<String> mSubCategoryList;
     private Context mContext;
@@ -75,6 +75,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         InputMethodManager inputMethodManager =
                 (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+
     }
 
     @Override
@@ -104,6 +105,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         spinnerCategory.setOnItemSelectedListener(this);
         spinnerSubCategory.setOnItemSelectedListener(this);
         spinnerVillage.setOnItemSelectedListener(this);
+
         loadCategoryData();
         loadVillageData();
         List<String> defaultList = new ArrayList();
@@ -113,12 +115,12 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
 
         defaultList = new ArrayList();
         defaultList.add(LI_CATEGORY);
-        defaultAdapter =new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
-                spinnerCategory.setAdapter(defaultAdapter);
+        defaultAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
+        spinnerCategory.setAdapter(defaultAdapter);
 
         defaultList = new ArrayList();
         defaultList.add(LI_SELECT_VILLAGE);
-        defaultAdapter =new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
+        defaultAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
         spinnerVillage.setAdapter(defaultAdapter);
     }
 
@@ -126,18 +128,24 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     public void onFocusChange(View view, boolean b) {
         if (b) {
             switch (view.getId()) {
+                case R.id.et_mar_name:
+                    //hideSoftKeyboard(this);
+                    selectKeyboard(etMarName);
+                    break;
                 case R.id.et_shop_address:
+                    //hideSoftKeyboard(this);
                     selectKeyboard(etShopAddress);
                     break;
                 case R.id.et_mar_shop_name:
+                    //hideSoftKeyboard(this);
                     selectKeyboard(etMarShopName);
                     break;
-                case R.id.et_shop_time:
-                    selectKeyboard(etShopTime);
-                    break;
+
             }
         } else {
-
+            if (mKeyboardView.getVisibility() == View.VISIBLE) {
+                mKeyboardView.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -149,6 +157,15 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
                     storeUserDetails();
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mKeyboardView.getVisibility() == View.VISIBLE) {
+            mKeyboardView.setVisibility(View.GONE);
+        } else {
+            super.onBackPressed();
         }
     }
 
@@ -331,44 +348,45 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    public void selectKeyboard(final EditText editText) {
+    public void selectKeyboard(final EditText messageEditText) {
 
         // Do not show the preview balloons
         mKeyboardView.setPreviewEnabled(false);
 
-        hideSoftKeyboard(this, editText);
+        hideSoftKeyboard(this, messageEditText);
 
-        mKeyboard = new Keyboard(mContext, R.xml.kbd_mar1);
+        mKeyboard = new Keyboard(this, R.xml.kbd_mar1);
         showKeyboardWithAnimation();
         mKeyboardView.setVisibility(View.VISIBLE);
         mKeyboardView.setKeyboard(mKeyboard);
 
+
         mKeyboardView.setOnKeyboardActionListener(new BasicOnKeyboardActionListener(
                 this,
-                etMarName,
+                messageEditText,
                 mKeyboardView));
 
-        editText.setOnTouchListener(new View.OnTouchListener() {
+        messageEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                selectKeyboard(editText);
+                selectKeyboard(messageEditText);
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_UP:
                         Layout layout = ((EditText) v).getLayout();
-                        float x = event.getX() + editText.getScrollX();
-                        float y = event.getY() + editText.getScrollY();
+                        float x = event.getX() + messageEditText.getScrollX();
+                        float y = event.getY() + messageEditText.getScrollY();
                         int line = layout.getLineForVertical((int) y);
 
                         int offset = layout.getOffsetForHorizontal(line, x);
                         if (offset > 0)
                             if (x > layout.getLineMax(0))
-                                editText
+                                messageEditText
                                         .setSelection(offset);     // touch was at end of text
                             else
-                                editText.setSelection(offset - 1);
+                                messageEditText.setSelection(offset - 1);
 
-                        editText.setCursorVisible(true);
+                        messageEditText.setCursorVisible(true);
                         break;
                 }
                 return true;
