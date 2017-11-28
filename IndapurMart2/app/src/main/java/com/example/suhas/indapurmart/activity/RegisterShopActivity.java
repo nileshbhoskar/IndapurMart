@@ -41,10 +41,6 @@ import java.util.Map;
 
 import nbit.com.networkreauest.request.NetworkRequests;
 import nbit.com.networkreauest.util.IResponseListener;
-/*import com.google.api.GoogleAPI;
-import com.google.api.translate.Language;
-import com.google.api.translate.Translate;
-import com.google.api.translate.TranslateV2;*/
 
 public class RegisterShopActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, IResponseListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = RegisterShopActivity.class.getSimpleName();
@@ -105,7 +101,9 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         spinnerCategory.setOnItemSelectedListener(this);
         spinnerSubCategory.setOnItemSelectedListener(this);
         spinnerVillage.setOnItemSelectedListener(this);
-
+        if (null != getSupportActionBar()) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         loadCategoryData();
         loadVillageData();
         List<String> defaultList = new ArrayList();
