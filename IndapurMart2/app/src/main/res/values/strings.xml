@@ -57,6 +57,8 @@
     ३) नोंदणी केल्या नंतर आपली माहिती अँप्लिकेशन मध्ये दिसण्यासाठी २४ तासापर्यंत चा वेळ लाघु शकतो.
     </string>
 
+    <string name="about_us_title">About Us</string>
+    <string name="contact_us">Contact Us</string>
     <string name="contact_us_name">Developer : Suhas Bansode</string>
     <string name="contact_us_email">Email : <u>indapurmart@gmail.com</u></string>
     <string name="contact_us_no">Mobile No : <u>8668911016</u></string>

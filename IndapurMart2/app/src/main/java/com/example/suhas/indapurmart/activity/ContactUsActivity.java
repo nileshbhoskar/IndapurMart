@@ -23,6 +23,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
         //TextView tv_contact_us_name = findViewById(R.id.tv_contact_us_name);
         TextView tvContactUsNo = findViewById(R.id.tv_contact_us_no);
         TextView tvContactUsEmail = findViewById(R.id.tv_contact_us_email);
+        tbContactUs.setTitle(getString(R.string.contact_us));
         setSupportActionBar(tbContactUs);
         if (null != getSupportActionBar()) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
