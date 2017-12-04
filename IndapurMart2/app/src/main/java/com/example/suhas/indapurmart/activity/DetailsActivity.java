@@ -41,7 +41,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         TextView tvOpenDay = findViewById(R.id.tv_open_day);
         TextView tvCall = findViewById(R.id.tv_call);
         TextView tvShare = findViewById(R.id.tv_share);
-
+        setSupportActionBar(tbUserDetail);
         if (null != getSupportActionBar()) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }

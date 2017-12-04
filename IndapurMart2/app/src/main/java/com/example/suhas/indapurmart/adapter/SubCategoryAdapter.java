@@ -51,8 +51,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
             holder.rlMainCategory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent();
-                    intent.setClass(mContext, ServiceProvidersActivity.class);
+                    Intent intent = new Intent(mContext, ServiceProvidersActivity.class);
                     //intent.putExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY, Arrays.asList(category));
                     intent.putExtra(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID, categoryId);
                     intent.putExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY_ID, category.getSubCatID());

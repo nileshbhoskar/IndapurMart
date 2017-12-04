@@ -30,12 +30,12 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapte
     private static final String TAG = MainCategoryAdapter.class.getSimpleName();
     private List<Category> mDataList;
     private Context mContext;
-    private int categoryType;
+    //private int categoryType;
 
     public MainCategoryAdapter(Context mContext, List<Category> mData, int category) {
         this.mDataList = mData;
         this.mContext = mContext;
-        this.categoryType = category;
+        //this.categoryType = category;
         Log.i(TAG,"MainCategoryAdapter");
     }
 

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="186dp"
     android:background="@drawable/ic_android_ui"
-    android:layout_margin="@dimen/margin_8"
+    android:layout_marginTop="@dimen/margin_4"
+    android:layout_marginLeft="@dimen/margin_2"
+    android:layout_marginRight="@dimen/margin_2"
     android:orientation="vertical">
 
     <TextView
@@ -17,4 +19,5 @@
         android:gravity="center"
         android:text="abcd"
         android:textColor="@color/colorAccent" />
+
 </RelativeLayout>

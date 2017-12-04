@@ -5,6 +5,8 @@
     <dimen name="sub_title_height">56dp</dimen>
     <dimen name="sub_category_iv_width">86dp</dimen>
     <dimen name="banner_iv_height">200dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
     <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="text_size_20">20sp</dimen>

@@ -16,13 +16,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
@@ -48,8 +48,6 @@ import java.util.List;
 import nbit.com.networkreauest.request.NetworkRequests;
 import nbit.com.networkreauest.util.IResponseListener;
 
-import com.daimajia.slider.library.SliderLayout;
-
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IResponseListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
@@ -57,11 +55,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView rvMainCategory;
     private ArrayList<SubCategory> subCategories;
     private String catID;
-    private boolean mVillageSelected;
+    //private boolean mVillageSelected;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationLayout;
     private ActionBarDrawerToggle mActionBarToggle;
-    private boolean mGetVillage;
+    //private boolean mGetVillage;
     private SliderLayout mDemoSlider;
 
     @Override
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationLayout.setNavigationItemSelectedListener(this);
         mDemoSlider = findViewById(R.id.slider);
 
-        HashMap<String, Integer> file_maps = new HashMap<String, Integer>();
+        HashMap<String, Integer> file_maps = new HashMap<>();
         file_maps.put("Hannibal", R.drawable.ic_hotel);
         file_maps.put("Big Bang Theory", R.drawable.product_detail_img);
         file_maps.put("House of Cards", R.drawable.metbkk_bkg_nahm_restaurant);
@@ -109,8 +107,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDemoSlider.addOnPageChangeListener(this);
 
         Intent intent = getIntent();
+        if (null == intent) {
+            mNavigationLayout.setVisibility(View.VISIBLE);
+        }
+
         if (null != intent && intent.hasExtra(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID)) {
             catID = intent.getStringExtra(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID);
+            mNavigationLayout.setVisibility(View.GONE);
+            if (null != getSupportActionBar()) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
         }
         if (null != intent && intent.hasExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY)) {
             subCategories = intent.getParcelableArrayListExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY);
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadVillageList(boolean makeRequest) {
         Log.i(TAG, "loadVillageList::" + makeRequest);
         if (makeRequest) {
-            mGetVillage = true;
+            //mGetVillage = true;
             WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
             NetworkRequests networkRequests = reference.get();
 
@@ -163,28 +169,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        switch (item.getItemId()) {
 
-            return true;
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
-    }*/
+    }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout layout = findViewById(R.id.drawer_layout);
         if (layout.isDrawerOpen(GravityCompat.START)) {
             layout.closeDrawer(GravityCompat.START);
             return;
@@ -205,7 +205,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             return true;
         } else if (id == R.id.nav_rate_us) {
-            //openShareAppDialog();
             final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
@@ -256,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.i(TAG, "networkResponse :: resp ::" + resp);
 
         if (resp.contains("VillageID")) {
-            mGetVillage = false;
+            //mGetVillage = false;
             VillageData villageData = new Gson().fromJson(resp, VillageData.class);
             villageListDlg(this, Arrays.asList(villageData.getResult()));
         } else {

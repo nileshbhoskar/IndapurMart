@@ -6,5 +6,6 @@
     <color name="black_overlay">#66000000</color>
     <color name="black">#000000</color>
     <color name="bg_call">#e5e5e5</color>
+    <color name="dialogBtnColor">#2979FF</color>
 
 </resources>

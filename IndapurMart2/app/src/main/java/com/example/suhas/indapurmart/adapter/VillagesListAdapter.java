@@ -81,12 +81,12 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                     String villagesArray;
                     if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
                         villagesArray = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
-                        String replaced = villagesArray.replace("]", ",");
-                        replaced = replaced + village.getEnVillageName() + "\"]";
+                        String replaced = villagesArray.replace("]", ",\"");
+                        replaced = replaced + village.getVillageID() + "\"]";
                         editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, replaced);
 
                     } else {
-                        villagesArray = "[\"" + village.getEnVillageName() + "\"]";
+                        villagesArray = "[\"" + village.getVillageID() + "\"]";
                         editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villagesArray);
                     }
                     editor.apply();

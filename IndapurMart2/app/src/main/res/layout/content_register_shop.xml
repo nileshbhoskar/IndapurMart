@@ -20,6 +20,7 @@
                 android:id="@+id/et_eng_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/owner_name_eng" />
 
         </android.support.design.widget.TextInputLayout>
@@ -36,6 +37,7 @@
                 android:id="@+id/et_mar_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/owner_name_mar" />
         </android.support.design.widget.TextInputLayout>
 
@@ -51,6 +53,7 @@
                 android:id="@+id/et_eng_shop_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/shop_name_eng" />
 
         </android.support.design.widget.TextInputLayout>
@@ -67,6 +70,7 @@
                 android:id="@+id/et_mar_shop_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/shop_name_mar" />
 
         </android.support.design.widget.TextInputLayout>
@@ -83,6 +87,7 @@
                 android:id="@+id/et_mobile_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="@string/mobile_no_mar" />
 
         </android.support.design.widget.TextInputLayout>
@@ -99,6 +104,7 @@
                 android:id="@+id/et_shop_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/shop_address_mar" />
 
         </android.support.design.widget.TextInputLayout>
@@ -115,6 +121,7 @@
                 android:id="@+id/et_shop_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="datetime"
                 android:hint="@string/shop_open_time_mar" />
 
         </android.support.design.widget.TextInputLayout>

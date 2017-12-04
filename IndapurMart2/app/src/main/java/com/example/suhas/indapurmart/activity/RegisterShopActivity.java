@@ -1,26 +1,22 @@
 package com.example.suhas.indapurmart.activity;
 
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.suhas.indapurmart.R;
@@ -30,7 +26,6 @@ import com.example.suhas.indapurmart.beans.Village;
 import com.example.suhas.indapurmart.common.IWebServices;
 import com.example.suhas.indapurmart.data.CategoryData;
 import com.example.suhas.indapurmart.data.VillageData;
-import com.example.suhas.indapurmart.keyboard.CustomKeyboardView;
 import com.google.gson.Gson;
 
 import java.lang.ref.WeakReference;
@@ -42,9 +37,9 @@ import java.util.Map;
 import nbit.com.networkreauest.request.NetworkRequests;
 import nbit.com.networkreauest.util.IResponseListener;
 
-public class RegisterShopActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, IResponseListener, AdapterView.OnItemSelectedListener {
+public class RegisterShopActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, IResponseListener {//}, View.OnFocusChangeListener,   View.OnTouchListener {
     private static final String TAG = RegisterShopActivity.class.getSimpleName();
-    private Toolbar toolbar;
+
     private EditText etEngName;
     private EditText etMarName;
     private EditText etEngShopName;
@@ -55,31 +50,21 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     private Spinner spinnerCategory;
     private Spinner spinnerSubCategory;
     private Spinner spinnerVillage;
-    private Button btnUpdate;
-    private CustomKeyboardView mKeyboardView;
-    private Keyboard mKeyboard;
     private Category[] mCategoryData;
-    //private SubCategory[] mSubCategoryData;
     private List<String> mCategoryList;
     private List<String> mSubCategoryList;
+    private VillageData villageData;
     private Context mContext;
     private static final String LI_CATEGORY = "Select category";
     private static final String LI_SUB_CATEGORY = "Select sub category";
     private static final String LI_SELECT_VILLAGE = "Select Village";
-
-    public void hideSoftKeyboard(Activity activity, EditText editText) {
-        InputMethodManager inputMethodManager =
-                (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_shop);
         mContext = this;
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         etEngName = findViewById(R.id.et_eng_name);
         etMarName = findViewById(R.id.et_mar_name);
         etEngShopName = findViewById(R.id.et_eng_shop_name);
@@ -90,14 +75,10 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         spinnerCategory = findViewById(R.id.spinner_category);
         spinnerSubCategory = findViewById(R.id.spinner_sub_category);
         spinnerVillage = findViewById(R.id.spinner_village);
-        btnUpdate = findViewById(R.id.btn_update);
-        mKeyboardView = findViewById(R.id.keyboardView);
+        Button btnUpdate = findViewById(R.id.btn_update);
 
         setSupportActionBar(toolbar);
         btnUpdate.setOnClickListener(this);
-        etMarName.setOnFocusChangeListener(this);
-        etMarShopName.setOnFocusChangeListener(this);
-        etShopAddress.setOnFocusChangeListener(this);
         spinnerCategory.setOnItemSelectedListener(this);
         spinnerSubCategory.setOnItemSelectedListener(this);
         spinnerVillage.setOnItemSelectedListener(this);
@@ -120,31 +101,8 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         defaultList.add(LI_SELECT_VILLAGE);
         defaultAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
         spinnerVillage.setAdapter(defaultAdapter);
-    }
 
-    @Override
-    public void onFocusChange(View view, boolean b) {
-        if (b) {
-            switch (view.getId()) {
-                case R.id.et_mar_name:
-                    //hideSoftKeyboard(this);
-                    selectKeyboard(etMarName);
-                    break;
-                case R.id.et_shop_address:
-                    //hideSoftKeyboard(this);
-                    selectKeyboard(etShopAddress);
-                    break;
-                case R.id.et_mar_shop_name:
-                    //hideSoftKeyboard(this);
-                    selectKeyboard(etMarShopName);
-                    break;
-
-            }
-        } else {
-            if (mKeyboardView.getVisibility() == View.VISIBLE) {
-                mKeyboardView.setVisibility(View.GONE);
-            }
-        }
+        showDialogKeyboardLang();
     }
 
     @Override
@@ -159,12 +117,21 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void onBackPressed() {
-        if (mKeyboardView.getVisibility() == View.VISIBLE) {
-            mKeyboardView.setVisibility(View.GONE);
-        } else {
-            super.onBackPressed();
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void storeUserDetails() {
@@ -177,10 +144,23 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         params.put("mobileNo", etMobileNumber.getText().toString());
         params.put("address", etShopAddress.getText().toString());
         params.put("shopTiming", etShopTime.getText().toString());
-        String category = "[{" + "categoryID:" + spinnerCategory.getSelectedItem().toString() + ",  subCatID:" + spinnerSubCategory.getSelectedItem().toString() + "}]";
+        String category = "[{" + "categoryID:" + spinnerCategory.getSelectedItemId() + ",  subCatID:" + spinnerSubCategory.getSelectedItemId() + "}]";
         params.put("category", category);
-        //params.put("test", spinnerSubCategory.getSelectedItem().toString());
-        params.put("village", spinnerVillage.getSelectedItem().toString());
+        String villageName = spinnerVillage.getSelectedItem().toString();
+        Village village = null;
+        for(Village village1 : villageData.getResult()){
+            if (village1.getMarVillageName().equalsIgnoreCase(villageName)){
+                village = village1;
+            }
+        }
+        Gson gson = new Gson();
+        if (null != village) {
+            params.put("village", gson.toJson(village));
+        } else {
+            Toast.makeText(mContext, "Select village", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Log.i(TAG, "params::" + params);
         WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
         NetworkRequests networkRequests = reference.get();
@@ -242,8 +222,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Log.i(TAG, "onItemSelected::");
-        Log.i(TAG, "onItemSelected::getId::" + Integer.toHexString(view.getId()));
-        Log.i(TAG, "onItemSelected::id::" + Integer.toHexString(R.id.spinner_category));
 
         switch (adapterView.getId()) {
             case R.id.spinner_category:
@@ -323,7 +301,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         if (resp.contains("enCategoryName") && resp.contains("marCategoryName")) {
             CategoryData categoryData = new Gson().fromJson(resp, CategoryData.class);
             //if (null == subCategories) {
-            Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + mCategoryData);
+            //Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + mCategoryData);
             mCategoryData = categoryData.getResult();
             if (null == mCategoryList) {
                 mCategoryList = new ArrayList();
@@ -336,7 +314,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             spinnerCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mCategoryList));
         } else if (resp.contains("VillageID")) {
 
-            VillageData villageData = new Gson().fromJson(resp, VillageData.class);
+            villageData = new Gson().fromJson(resp, VillageData.class);
             List<String> villages = new ArrayList<>();
             for (Village village : villageData.getResult()) {
                 villages.add(village.getMarVillageName());
@@ -346,132 +324,34 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    public void selectKeyboard(final EditText messageEditText) {
+    private void showDialogKeyboardLang() {
+        View promptsView = View.inflate(this, R.layout.dialog_marathi_input, null);
 
-        // Do not show the preview balloons
-        mKeyboardView.setPreviewEnabled(false);
+        final AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(this);
+        alertDialogBuilder.setView(promptsView);
 
-        hideSoftKeyboard(this, messageEditText);
+        final TextView tvDescription = promptsView.findViewById(R.id.tv_description);
+        final TextView tvCancel = promptsView.findViewById(R.id.tv_cancel);
+        final TextView tvGoToSetting = promptsView.findViewById(R.id.tv_go_to_setting);
+        final AlertDialog alertDialog = alertDialogBuilder.create();
 
-        mKeyboard = new Keyboard(this, R.xml.kbd_mar1);
-        showKeyboardWithAnimation();
-        mKeyboardView.setVisibility(View.VISIBLE);
-        mKeyboardView.setKeyboard(mKeyboard);
+        tvDescription.setText(getString(R.string.marathi_input_inst));
 
-
-        mKeyboardView.setOnKeyboardActionListener(new BasicOnKeyboardActionListener(
-                this,
-                messageEditText,
-                mKeyboardView));
-
-        messageEditText.setOnTouchListener(new View.OnTouchListener() {
+        tvGoToSetting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                selectKeyboard(messageEditText);
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.ACTION_INPUT_METHOD_SUBTYPE_SETTINGS);
 
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_UP:
-                        Layout layout = ((EditText) v).getLayout();
-                        float x = event.getX() + messageEditText.getScrollX();
-                        float y = event.getY() + messageEditText.getScrollY();
-                        int line = layout.getLineForVertical((int) y);
-
-                        int offset = layout.getOffsetForHorizontal(line, x);
-                        if (offset > 0)
-                            if (x > layout.getLineMax(0))
-                                messageEditText
-                                        .setSelection(offset);     // touch was at end of text
-                            else
-                                messageEditText.setSelection(offset - 1);
-
-                        messageEditText.setCursorVisible(true);
-                        break;
-                }
-                return true;
+                startActivity(intent);
+                alertDialog.dismiss();
             }
         });
-    }
-
-    private void showKeyboardWithAnimation() {
-        if (mKeyboardView.getVisibility() == View.GONE) {
-            Animation animation = AnimationUtils
-                    .loadAnimation(RegisterShopActivity.this,
-                            R.anim.slide_from_bottom);
-            mKeyboardView.showWithAnimation(animation);
-        }
-    }
-
-    public class BasicOnKeyboardActionListener implements KeyboardView.OnKeyboardActionListener {
-
-        EditText editText;
-        CustomKeyboardView displayKeyboardView;
-        private Activity mTargetActivity;
-
-        public BasicOnKeyboardActionListener(Activity targetActivity, EditText editText,
-                                             CustomKeyboardView
-                                                     displayKeyboardView) {
-            mTargetActivity = targetActivity;
-            this.editText = editText;
-            this.displayKeyboardView = displayKeyboardView;
-        }
-
-        @Override
-        public void swipeUp() {
-
-        }
-
-        @Override
-        public void swipeRight() {
-
-        }
-
-        @Override
-        public void swipeLeft() {
-        }
-
-        @Override
-        public void swipeDown() {
-
-        }
-
-        @Override
-        public void onText(CharSequence text) {
-            int cursorPosition = editText.getSelectionEnd();
-            String before = editText.getText().toString().substring(0, cursorPosition);
-            String after = editText.getText().toString().substring(cursorPosition);
-            editText.setText(before + text + after);
-            editText.setSelection(cursorPosition + 1);
-        }
-
-        @Override
-        public void onRelease(int primaryCode) {
-        }
-
-        @Override
-        public void onPress(int primaryCode) {
-        }
-
-        @Override
-        public void onKey(int primaryCode, int[] keyCodes) {
-            switch (primaryCode) {
-                case 66:
-                case 67:
-                    long eventTime = System.currentTimeMillis();
-                    KeyEvent event =
-                            new KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN, primaryCode, 0, 0, 0, 0,
-                                    KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE);
-
-                    mTargetActivity.dispatchKeyEvent(event);
-                    break;
-                case -110:
-                    displayKeyboardView.setKeyboard(new Keyboard(mTargetActivity, R.xml.kbd_mar2));
-                    break;
-                case -111:
-                    displayKeyboardView.setKeyboard(new Keyboard(mTargetActivity, R.xml.kbd_mar1));
-                    break;
-                default:
-                    break;
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
             }
-        }
+        });
+        alertDialog.show();
     }
 }
