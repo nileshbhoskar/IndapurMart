@@ -1,6 +1,7 @@
 package com.example.suhas.indapurmart.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.suhas.indapurmart.R;
 import com.example.suhas.indapurmart.adapter.SubSubCategoryAdapter;
@@ -75,11 +75,12 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
         btnRegister = findViewById(R.id.btn_register);
         tvNoRecordFound = findViewById(R.id.tv_no_record_found);
         rvVillages = findViewById(R.id.rv_categories);
-        rvVillages.setLayoutManager(new LinearLayoutManager(this));
+        rvVillages.setLayoutManager(new LinearLayoutManager(mContext));
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "register", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, RegisterShopActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -130,10 +131,10 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
         response = null;
 
         Log.e(TAG, "networkResponse::Received response :: " + resp);
-        UserData categoryData = new Gson().fromJson(resp, UserData.class);
+        UserData userData = new Gson().fromJson(resp, UserData.class);
 
-        if (categoryData.getStatusCode().equals("200")) {
-            User[] categories = categoryData.getResult();
+        if (userData.getStatusCode().equals("200")) {
+            User[] categories = userData.getResult();
             if (categories != null && categories.length != 0) {
                 btnRegister.setVisibility(View.GONE);
                 tvNoRecordFound.setVisibility(View.GONE);

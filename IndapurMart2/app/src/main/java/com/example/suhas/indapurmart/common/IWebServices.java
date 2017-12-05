@@ -14,7 +14,7 @@ public interface IWebServices {
     String SUB_DIR_2 = "app1";
     String URL_DIVIDER = "/";
     //String FINAL_URL = DOMAIN_NAME + ":" + PORT + URL_DIVIDER + SUB_DIR_1 + URL_DIVIDER + SUB_DIR_2 + URL_DIVIDER;
-    String FINAL_URL = DOMAIN_NAME + ":" + URL_DIVIDER + SUB_DIR_1 + URL_DIVIDER + SUB_DIR_2 + URL_DIVIDER;
+    String FINAL_URL = DOMAIN_NAME + URL_DIVIDER + SUB_DIR_1 + URL_DIVIDER + SUB_DIR_2 + URL_DIVIDER;
     String URL_USER_DATA = FINAL_URL + "userdata";
     String URL_VILLAGES = FINAL_URL + "villages";
     String URL_VILLAGES_USER_DATA = FINAL_URL + "villagesuserdata";

@@ -55,11 +55,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView rvMainCategory;
     private ArrayList<SubCategory> subCategories;
     private String catID;
-    //private boolean mVillageSelected;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationLayout;
     private ActionBarDrawerToggle mActionBarToggle;
-    //private boolean mGetVillage;
     private SliderLayout mDemoSlider;
 
     @Override
@@ -141,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadVillageList(boolean makeRequest) {
         Log.i(TAG, "loadVillageList::" + makeRequest);
         if (makeRequest) {
-            //mGetVillage = true;
             WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
             NetworkRequests networkRequests = reference.get();
 
@@ -233,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Rotary app invitation");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Indapur Mart app invitation");
         intent.putExtra(Intent.EXTRA_TEXT, "To know more about the IndapurMart download Android app : \nhttps://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
         startActivity(intent);
     }

@@ -144,7 +144,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         params.put("mobileNo", etMobileNumber.getText().toString());
         params.put("address", etShopAddress.getText().toString());
         params.put("shopTiming", etShopTime.getText().toString());
-        String category = "[{" + "categoryID:" + spinnerCategory.getSelectedItemId() + ",  subCatID:" + spinnerSubCategory.getSelectedItemId() + "}]";
+        String category = "[{" + "\"categoryID\":\"" + spinnerCategory.getSelectedItemId() + "\", \"subCatID\":\"" + spinnerSubCategory.getSelectedItemId() + "\"}]";
         params.put("category", category);
         String villageName = spinnerVillage.getSelectedItem().toString();
         Village village = null;
@@ -164,7 +164,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         Log.i(TAG, "params::" + params);
         WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
         NetworkRequests networkRequests = reference.get();
-        networkRequests.webRequestPOSTString(mContext, IWebServices.URL_SAVE_VILLAGES_USERDATA, params, "Storing details", true, this);
+        networkRequests.webRequestPOSTString(mContext, IWebServices.URL_SAVE_VILLAGES_USERDATA, params, "", false, this);
     }
 
     private boolean validateFields() {
@@ -179,7 +179,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             Toast.makeText(this, "Select sub category", Toast.LENGTH_LONG).show();
             return false;
         }
-
         if (TextUtils.isEmpty(etEngName.getText().toString())) {
             etEngName.requestFocus();
             etEngName.setError("Enter Name in English");

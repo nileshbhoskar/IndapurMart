@@ -26,6 +26,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -292,6 +293,20 @@ public class NetworkRequests {
                         Log.i(TAG, "NetworkRequests:: webServiceRequest::getParams::set default params");
                         return super.getParams();
                     }
+
+                    /*@Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+
+                        Map<String, String> headers = getHeaders();
+                        if (null == headers){
+                            Log.e(TAG,"null headers");
+                            headers = new HashMap<>();
+                        }
+
+                        headers.put("Content-Type", "application/json");
+                        Log.i(TAG,"headers :: " + headers.toString());
+                        return headers;
+                    }*/
                 };
                 cache.clear();
                 mRequestQueue.add(request);
