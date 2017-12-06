@@ -17,7 +17,7 @@ import java.util.List;
 
 public class SubSubCategoryActivity extends AppCompatActivity {
 
-    private RecyclerView rvSubSubCategory;
+    /*private RecyclerView rvSubSubCategory;
     private String subCategory;
     private String category;
 
@@ -72,5 +72,5 @@ public class SubSubCategoryActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

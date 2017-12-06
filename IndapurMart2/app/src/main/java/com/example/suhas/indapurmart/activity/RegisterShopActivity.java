@@ -40,9 +40,9 @@ import nbit.com.networkreauest.util.IResponseListener;
 public class RegisterShopActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, IResponseListener {//}, View.OnFocusChangeListener,   View.OnTouchListener {
     private static final String TAG = RegisterShopActivity.class.getSimpleName();
 
-    private EditText etEngName;
     private EditText etMarName;
-    private EditText etEngShopName;
+    //private EditText etEngName;
+    //private EditText etEngShopName;
     private EditText etMarShopName;
     private EditText etMobileNumber;
     private EditText etShopAddress;
@@ -65,9 +65,9 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_register_shop);
         mContext = this;
         Toolbar toolbar = findViewById(R.id.toolbar);
-        etEngName = findViewById(R.id.et_eng_name);
+        //etEngName = findViewById(R.id.et_eng_name);
+        //etEngShopName = findViewById(R.id.et_eng_shop_name);
         etMarName = findViewById(R.id.et_mar_name);
-        etEngShopName = findViewById(R.id.et_eng_shop_name);
         etMarShopName = findViewById(R.id.et_mar_shop_name);
         etMobileNumber = findViewById(R.id.et_mobile_number);
         etShopAddress = findViewById(R.id.et_shop_address);
@@ -137,9 +137,9 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     private void storeUserDetails() {
         Map<String, String> params = new HashMap<>();
 
-        params.put("enUserName", etEngName.getText().toString());
+        params.put("enUserName", "not allowed");
+        params.put("enShopName", "not allowed");
         params.put("marUserName", etMarName.getText().toString());
-        params.put("enShopName", etEngShopName.getText().toString());
         params.put("marShopName", etMarShopName.getText().toString());
         params.put("mobileNo", etMobileNumber.getText().toString());
         params.put("address", etShopAddress.getText().toString());
@@ -148,8 +148,8 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         params.put("category", category);
         String villageName = spinnerVillage.getSelectedItem().toString();
         Village village = null;
-        for(Village village1 : villageData.getResult()){
-            if (village1.getMarVillageName().equalsIgnoreCase(villageName)){
+        for (Village village1 : villageData.getResult()) {
+            if (village1.getMarVillageName().equalsIgnoreCase(villageName)) {
                 village = village1;
             }
         }
@@ -179,21 +179,21 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             Toast.makeText(this, "Select sub category", Toast.LENGTH_LONG).show();
             return false;
         }
-        if (TextUtils.isEmpty(etEngName.getText().toString())) {
-            etEngName.requestFocus();
-            etEngName.setError("Enter Name in English");
-            return false;
-        }
         if (TextUtils.isEmpty(etMarName.getText().toString())) {
             etMarName.requestFocus();
             etMarName.setError("Enter Name in Marathi");
+            return false;
+        }
+        /*if (TextUtils.isEmpty(etEngName.getText().toString())) {
+            etEngName.requestFocus();
+            etEngName.setError("Enter Name in English");
             return false;
         }
         if (TextUtils.isEmpty(etEngShopName.getText().toString())) {
             etEngShopName.requestFocus();
             etEngShopName.setError("Enter Shop Name in English");
             return false;
-        }
+        }*/
         if (TextUtils.isEmpty(etMarShopName.getText().toString())) {
             etMarShopName.requestFocus();
             etMarShopName.setError("Enter Shop Name in Marathi");
@@ -282,15 +282,22 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         networkRequests.webRequestGETString(this, IWebServices.URL_VILLAGES, getString(R.string.dialog_msg_loading_data), true, this);
     }
 
+    public static void showToastMsg(Context context, String message) {
+
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void networkResponse(Object response) {
         if (null == response) {
             Log.e(TAG, "Received null response");
+            showToastMsg(mContext, "Failed to store data");
             return;
         }
 
         if (!(response instanceof String)) {
             Log.e(TAG, "Received invalid response");
+            showToastMsg(mContext, "Failed to store data");
             return;
         }
         String resp = (String) response;
@@ -320,7 +327,27 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             }
             villages.add(0, "select Village");
             spinnerVillage.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, villages));
+            //{"statusCode":200,"result":true}
+        } else if (resp.contains("statusCode") && resp.contains("result")) {
+            if (resp.contains("200") && resp.contains("true")) {
+                showToastMsg(mContext, "Registration completed");
+                clearFields();
+            } else {
+                showToastMsg(mContext, "Registration failed");
+            }
         }
+    }
+
+    private void clearFields(){
+        etMarName.getText().clear();
+        etMarShopName.getText().clear();
+        etMobileNumber.getText().clear();
+        etShopAddress.getText().clear();
+        etShopTime.getText().clear();
+
+        spinnerVillage.setSelection(0);
+        spinnerCategory.setSelection(0);
+        spinnerSubCategory.setSelection(0);
     }
 
     private void showDialogKeyboardLang() {

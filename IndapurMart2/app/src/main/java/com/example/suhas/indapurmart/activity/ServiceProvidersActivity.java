@@ -42,7 +42,6 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
     private static final String TAG = ServiceProvidersActivity.class.getSimpleName();
     private String catId;
     private String subCatId;
-    private String villageId;
     private static final String HEADER_KEY_CAT_ID = "catID";
     private static final String HEADER_KEY_SUB_CAT_ID = "subCatID";
     private static final String HEADER_KEY_VILLAGE_ID = "villages";
@@ -58,19 +57,19 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
         Toolbar toolbar = findViewById(R.id.toolbar);
         mContext = this;
         Bundle args = getIntent().getExtras();
-        Log.i(TAG, "args::" + args.toString());
-        if (args.containsKey(ICommonConstants.KEY_PARCELABLE_VILLAGE_ID)) {
-            villageId = args.getString(ICommonConstants.KEY_PARCELABLE_VILLAGE_ID);
-        }
-        if (args.containsKey(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY_ID)) {
-            subCatId = args.getString(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY_ID);
-        }
-        if (args.containsKey(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID)) {
-            catId = args.getString(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID);
-        }
-        setSupportActionBar(toolbar);
-        if (null != getSupportActionBar()) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (null != args) {
+            Log.i(TAG, "args::" + args.toString());
+
+            if (args.containsKey(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY_ID)) {
+                subCatId = args.getString(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY_ID);
+            }
+            if (args.containsKey(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID)) {
+                catId = args.getString(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID);
+            }
+            setSupportActionBar(toolbar);
+            if (null != getSupportActionBar()) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
         }
         btnRegister = findViewById(R.id.btn_register);
         tvNoRecordFound = findViewById(R.id.tv_no_record_found);
@@ -91,8 +90,8 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
         SharedPreferences preferences = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
         String villageList = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
         if (TextUtils.isEmpty(villageList)) {
-            villageList = "[]";
         }
+        villageList = "[]";
         WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
         NetworkRequests networkRequests = reference.get();
         Map<String, String> params = new HashMap<>();
@@ -151,8 +150,8 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
                 tvNoRecordFound.setVisibility(View.VISIBLE);
                 rvVillages.setVisibility(View.GONE);
             }
-        } else {
+        }/* else {
 
-        }
+        }*/
     }
 }
