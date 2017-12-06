@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/margin_8"
+    android:paddingRight="@dimen/margin_8">
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8"
+        android:text="@string/marathi_input_inst"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8"
+            android:padding="@dimen/margin_8"
+            android:text="@string/ok"
+            android:textColor="@color/dialogBtnColor" />
+
+        <TextView
+            android:id="@+id/tv_go_to_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8"
+            android:padding="@dimen/margin_8"
+            android:text="@string/go_to_setting"
+            android:textColor="@color/dialogBtnColor" />
+
+    </LinearLayout>
+</LinearLayout>
