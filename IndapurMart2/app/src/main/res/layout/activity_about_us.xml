@@ -8,31 +8,18 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_about_us"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_about_us"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="@dimen/expandable_title_margin_right"
-            app:expandedTitleMarginStart="@dimen/expandable_title_margin_left"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/title_about_us" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/tb_about_us"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                app:layout_collapseMode="pin"
-
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
 
     <TextView
         android:id="@+id/tv_about_us"

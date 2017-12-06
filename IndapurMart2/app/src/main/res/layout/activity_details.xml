@@ -67,8 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_person_outline"
-                    android:paddingLeft="@dimen/margin_8"
-                    android:paddingTop="@dimen/margin_8"
+                    android:padding="@dimen/margin_8"
                     android:text="@string/mar_owner_name"
                     android:textSize="@dimen/text_size_20" />
 
@@ -79,17 +78,8 @@
                     android:drawableLeft="@drawable/ic_place"
                     android:drawablePadding="@dimen/margin_8"
                     android:hint="@string/mar_address"
-                    android:paddingLeft="@dimen/margin_8"
+                    android:padding="@dimen/margin_8"
                     android:textSize="@dimen/text_size_20" />
-
-                <!--<TextView
-                    android:id="@+id/tv_phone_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/margin_8"
-                    android:paddingTop="@dimen/margin_8"
-                    android:text="@string/mar_phone_no"
-                    android:textSize="@dimen/text_size_20" />-->
 
                 <TextView
                     android:id="@+id/tv_phone"
@@ -114,9 +104,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_time"
-                    android:paddingLeft="@dimen/margin_8"
+                    android:layout_margin="@dimen/margin_8"
                     android:paddingRight="@dimen/margin_8"
                     android:paddingTop="@dimen/margin_8"
+                    android:drawableLeft="@android:drawable/ic_menu_recent_history"
                     android:text="@string/mar_time"
                     android:textSize="@dimen/text_size_20" />
 
@@ -131,51 +122,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal"
-                android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/tv_call"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/bg_call"
-                    android:drawableTint="@color/colorPrimary"
-                    android:drawableTop="@drawable/ic_phone"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/margin_8"
-                    android:text="call" />
-
-                <!--<TextView
-                    android:id="@+id/tv_add_contact"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#e5e5e5"
-                    android:drawableTint="@android:color/white"
-                    android:drawableTop="@drawable/ic_person_add"
-                    android:gravity="center"
-                    android:paddingTop="10dp"
-                    android:text="add contact" />-->
-
-
-                <TextView
-                    android:id="@+id/tv_share"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/bg_call"
-                    android:drawableTint="@android:color/white"
-                    android:drawableTop="@drawable/ic_share"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/margin_8"
-                    android:text="share" />
-
-            </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout><!--</RelativeLayout>-->
+</android.support.design.widget.CoordinatorLayout>
