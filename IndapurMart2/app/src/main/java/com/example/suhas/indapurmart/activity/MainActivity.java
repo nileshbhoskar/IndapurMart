@@ -212,9 +212,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.setClass(this, ContactUsActivity.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.nav_notification) {
+        } /*else if (id == R.id.nav_notification) {
             Toast.makeText(this, "coming soon...", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_about_us) {
+        }*/ else if (id == R.id.nav_about_us) {
             intent.setClass(this, AboutUsActivity.class);
             startActivity(intent);
             return true;

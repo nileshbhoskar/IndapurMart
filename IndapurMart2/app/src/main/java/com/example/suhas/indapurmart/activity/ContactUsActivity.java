@@ -27,6 +27,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
         setSupportActionBar(tbContactUs);
         if (null != getSupportActionBar()) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(getString(R.string.contact_us));
         }
         tvContactUsNo.setOnClickListener(this);
         tvContactUsEmail.setOnClickListener(this);
