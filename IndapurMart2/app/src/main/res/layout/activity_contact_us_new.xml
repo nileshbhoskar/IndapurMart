@@ -93,8 +93,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="156dp"
-            android:layout_height="156dp"
+            android:layout_width="@dimen/height_156"
+            android:layout_height="@dimen/height_156"
             android:layout_gravity="center"
             android:layout_margin="@dimen/margin_16"
             android:background="@drawable/button_border_contact_us"
@@ -103,8 +103,8 @@
             android:weightSum="10">
 
             <LinearLayout
-                android:layout_width="136dp"
-                android:layout_height="136dp"
+                android:layout_width="@dimen/height_136"
+                android:layout_height="@dimen/height_136"
                 android:layout_margin="@dimen/margin_16"
                 android:background="@drawable/button_contact_us"
                 android:gravity="center"
@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@android:drawable/sym_action_call"
-                    android:tint="@android:color/white"/>
+                    android:tint="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_contact_us_no"

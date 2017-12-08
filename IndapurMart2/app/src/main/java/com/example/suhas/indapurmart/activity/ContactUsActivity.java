@@ -17,11 +17,10 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us_new);
-
         Toolbar tbContactUs = findViewById(R.id.tb_contact_us);
         //TextView tv_contact_us_name = findViewById(R.id.tv_contact_us_name);
         TextView tvContactUsNo = findViewById(R.id.tv_contact_us_no);
-        TextView tvContactUsEmail = findViewById(R.id.tv_contact_us_email);
+        //TextView tvContactUsEmail = findViewById(R.id.tv_contact_us_email);
         tbContactUs.setTitle(getString(R.string.contact_us));
         setSupportActionBar(tbContactUs);
         if (null != getSupportActionBar()) {
@@ -29,7 +28,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
             getSupportActionBar().setTitle(getString(R.string.contact_us));
         }
         tvContactUsNo.setOnClickListener(this);
-        tvContactUsEmail.setOnClickListener(this);
+        //tvContactUsEmail.setOnClickListener(this);
     }
 
     @Override
