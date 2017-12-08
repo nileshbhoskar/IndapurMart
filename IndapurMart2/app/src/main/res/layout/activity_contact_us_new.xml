@@ -10,30 +10,18 @@
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/abl_contact_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/tb_about_us"
+                android:id="@+id/tb_contact_us"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:gravity="center"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+                android:layout_height="56dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-                <TextView
-                    android:id="@+id/tv_sub_category_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingRight="56dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/contact_us"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_size_20"
-                    android:textStyle="bold" />
-
-            </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
         <LinearLayout

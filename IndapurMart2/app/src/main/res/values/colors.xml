@@ -8,4 +8,7 @@
     <color name="bg_call">#e5e5e5</color>
     <color name="dialogBtnColor">#2979FF</color>
 
+    <color name="ivSelectedImage">#0095BF</color>
+    <color name="ivUnselectedImage">#55333333</color>
+
 </resources>

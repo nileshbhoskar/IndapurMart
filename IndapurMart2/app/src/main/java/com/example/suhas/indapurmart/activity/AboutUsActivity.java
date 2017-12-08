@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.suhas.indapurmart.R;
 
@@ -12,8 +14,10 @@ public class AboutUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        setContentView(R.layout.activity_about_us_new);
         Toolbar tbAboutUs = findViewById(R.id.tb_about_us);
+        TextView tvAboutUsText = findViewById(R.id.tv_about_us_text);
+        ImageView ivAppLogo = findViewById(R.id.iv_app_logo);
         tbAboutUs.setTitle(getString(R.string.title_about_us));
         tbAboutUs.setTitle(getString(R.string.about_us_title));
         setSupportActionBar(tbAboutUs);

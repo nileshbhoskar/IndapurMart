@@ -68,4 +68,11 @@
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
     <string name="go_to_setting">GO TO SETTING</string>
+
+    <string name="company_name">Company Name</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone : </string>
+    <string name="contact_no"><u>866 891 1016</u></string>
+
+
 </resources>
