@@ -164,7 +164,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         Log.i(TAG, "params::" + params);
         WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
         NetworkRequests networkRequests = reference.get();
-        networkRequests.webRequestPOSTString(mContext, IWebServices.URL_SAVE_VILLAGES_USERDATA, params, "", false, this);
+        networkRequests.webRequestPOSTString(mContext, IWebServices.URL_SAVE_VILLAGES_USERDATA, params, "storing data", true, this);
     }
 
     private boolean validateFields() {
@@ -184,16 +184,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             etMarName.setError("Enter Name in Marathi");
             return false;
         }
-        /*if (TextUtils.isEmpty(etEngName.getText().toString())) {
-            etEngName.requestFocus();
-            etEngName.setError("Enter Name in English");
-            return false;
-        }
-        if (TextUtils.isEmpty(etEngShopName.getText().toString())) {
-            etEngShopName.requestFocus();
-            etEngShopName.setError("Enter Shop Name in English");
-            return false;
-        }*/
         if (TextUtils.isEmpty(etMarShopName.getText().toString())) {
             etMarShopName.requestFocus();
             etMarShopName.setError("Enter Shop Name in Marathi");
@@ -306,8 +296,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         Log.i(TAG, "networkResponse :: resp ::" + resp);
         if (resp.contains("enCategoryName") && resp.contains("marCategoryName")) {
             CategoryData categoryData = new Gson().fromJson(resp, CategoryData.class);
-            //if (null == subCategories) {
-            //Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + mCategoryData);
             mCategoryData = categoryData.getResult();
             if (null == mCategoryList) {
                 mCategoryList = new ArrayList();
@@ -327,7 +315,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             }
             villages.add(0, "select Village");
             spinnerVillage.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, villages));
-            //{"statusCode":200,"result":true}
         } else if (resp.contains("statusCode") && resp.contains("result")) {
             if (resp.contains("200") && resp.contains("true")) {
                 showToastMsg(mContext, "Registration completed");

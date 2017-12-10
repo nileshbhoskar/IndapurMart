@@ -49,7 +49,7 @@
             android:layout_marginLeft="@dimen/margin_32"
             android:layout_marginRight="@dimen/margin_32"
             android:layout_marginTop="@dimen/margin_32"
-            android:text="@string/about_us_title" />
+            android:text="@string/about_us" />
 
     </LinearLayout>
 </ScrollView>

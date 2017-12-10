@@ -11,7 +11,7 @@ public class Village {
     private String _id;
     private String talukaID;
     private String isActive;
-
+    private boolean isSelected;
 
     public String getVillageID() {
         return VillageID;
@@ -61,6 +61,14 @@ public class Village {
         this.isActive = isActive;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
     @Override
     public String toString() {
         return "VillageData{" +
@@ -70,6 +78,7 @@ public class Village {
                 ", _id='" + _id + '\'' +
                 ", talukaID='" + talukaID + '\'' +
                 ", isActive='" + isActive + '\'' +
+                ", isSelected='" + isSelected + '\'' +
                 '}';
     }
 }

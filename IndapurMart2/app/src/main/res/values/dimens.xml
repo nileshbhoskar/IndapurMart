@@ -17,6 +17,7 @@
     <dimen name="margin_16">16dp</dimen>
     <dimen name="margin_32">32dp</dimen>
     <dimen name="height_136">136dp</dimen>
+    <dimen name="height_96">96dp</dimen>
     <dimen name="height_156">156dp</dimen>
 
     <dimen name="expandable_title_margin_left">48dp</dimen>

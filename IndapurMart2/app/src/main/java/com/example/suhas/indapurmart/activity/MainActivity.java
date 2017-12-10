@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void villageListDlg(final Context context, List<Village> villages) {
+    public void villageListDialog(final Context context, List<Village> villages) {
         View promptsView = View.inflate(this, R.layout.dialog_village_list, null);
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
@@ -154,6 +153,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final RecyclerView etQuantity = promptsView.findViewById(R.id.rv_village_list);
         final Button btnClose = promptsView.findViewById(R.id.btn_close);
         etQuantity.setLayoutManager(new LinearLayoutManager(this));
+        String villageList = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES,MODE_PRIVATE).getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST,"");
+        Log.i(TAG,"villageList::" + villageList);
+        String[] villageIds = villageList.split(",");
+        for (String id : villageIds){
+            Log.i(TAG,"id ::id::" + id);
+            for (Village village : villages){
+                if (id.contains(village.getVillageID())){
+                    Log.i(TAG,"id exist::id::" + id);
+                    village.setSelected(true);
+                }
+            }
+        }
         etQuantity.setAdapter(new VillagesListAdapter(this, villages));
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -254,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (resp.contains("VillageID")) {
             //mGetVillage = false;
             VillageData villageData = new Gson().fromJson(resp, VillageData.class);
-            villageListDlg(this, Arrays.asList(villageData.getResult()));
+            villageListDialog(this, Arrays.asList(villageData.getResult()));
         } else {
             CategoryData categoryList = new Gson().fromJson(resp, CategoryData.class);
             if (null == subCategories) {

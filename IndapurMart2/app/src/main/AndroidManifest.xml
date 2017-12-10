@@ -22,9 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity
-            android:name=".activity.SubSubCategoryActivity"
-            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".activity.DetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -34,14 +31,21 @@
         <activity
             android:name=".activity.ServiceProvidersActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.RegisterShopActivity"
-             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.ContactUsActivity"
-             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.AboutUsActivity"
-             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.NotificationsActivity"
-             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.RegisterShopActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ContactUsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.NotificationsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.SubCategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

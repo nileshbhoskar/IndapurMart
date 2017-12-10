@@ -4,7 +4,7 @@
     <string name="hint_title">Title</string>
     <string name="dialog_msg_loading_data">Loading data</string>
     <string name="village_name">Village Name</string>
-    <string name="select_villages">Select village choice from blow list</string>
+    <string name="select_villages">कृपया तुम्हाला ज्या गावाची माहिती हवी आहे\nती गावे सिलेक्ट करा.</string>
     <string name="mar_owner_name">प्रो.प्रा %1$s</string>
     <string name="mar_phone_no">फोन नंबर</string>
     <string name="hint_mar_phone_no">phone Number</string>
@@ -13,8 +13,8 @@
     <string name="mar_sunday_off">रविवारी बंद</string>
     <string name="mar_address">पत्ता </string>
 
-    <string name="no_record_found"><u>No record found. \nDo you want to register?</u></string>
-    <string name="register">Register</string>
+    <string name="no_record_found"><u>सदर प्रकरणी कोणती ही नोंदनी नाही.\nकृपया नोंदनी करा.</u></string>
+    <string name="register">नोंदनी करा</string>
 
 
     <string name="nav_village_selection">village selection</string>
@@ -69,8 +69,7 @@
     <string name="cancel">CANCEL</string>
     <string name="go_to_setting">GO TO SETTING</string>
 
-    <string name="company_name">Company Name</string>
-    <string name="address">Address</string>
+    <string name="company_name">Email ID</string>
     <string name="phone">Phone : </string>
     <string name="contact_no"><u>866 891 1016</u></string>
 

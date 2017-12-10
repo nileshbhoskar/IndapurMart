@@ -67,9 +67,15 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                 Log.e(TAG, "Found null village");
                 return;
             }
+            Log.i(TAG,"Village ::" + village);
             this.village = village;
             cbSelectedVillage.setText(village.getMarVillageName());
             cbSelectedVillage.setOnClickListener(this);
+            if (village.isSelected()){
+                Log.i(TAG,"Village ::settingSelected::" + village.getVillageID());
+
+                cbSelectedVillage.setChecked(true);
+            }
         }
 
         @Override
@@ -78,18 +84,32 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                 case R.id.cb_village:
                     SharedPreferences preferences = mContext.getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, mContext.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-                    String villagesArray;
-                    if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
-                        villagesArray = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
-                        String replaced = villagesArray.replace("]", ",\"");
-                        replaced = replaced + village.getVillageID() + "\"]";
-                        editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, replaced);
+                    if (cbSelectedVillage.isChecked()) {
+                        String villagesArray;
+                        if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
+                            villagesArray = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
+                            String replaced = villagesArray.replace("]", ",\"");
+                            replaced = replaced + village.getVillageID() + "\"]";
+                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, replaced);
 
-                    } else {
-                        villagesArray = "[\"" + village.getVillageID() + "\"]";
-                        editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villagesArray);
-                    }
-                    editor.apply();
+                        } else {
+                            villagesArray = "[\"" + village.getVillageID() + "\"]";
+                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villagesArray);
+                        }
+                        editor.apply();
+                    } /*else if (!cbSelectedVillage.isChecked()){
+                        String villagesArray;
+                        if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
+                            villagesArray = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
+                            String replaced = villagesArray.replace("]", ",\"");
+                            replaced = replaced + village.getVillageID() + "\"]";
+                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, replaced);
+
+                        } else {
+                            villagesArray = "[\"" + village.getVillageID() + "\"]";
+                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villagesArray);
+                        }
+                    }*/
                     break;
             }
         }
