@@ -64,21 +64,32 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.rl_user_details:
                 break;
             case R.id.tv_address:
                 break;
             case R.id.tv_phone:
+
                 break;
             case R.id.tv_open_day:
                 break;
             case R.id.tv_call:
-                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + mUser.getMobileNo()));
                 startActivity(intent);
                 break;
             case R.id.tv_share:
+                intent = new Intent(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, (getString(R.string.owner_name_mar) + " : " + mUser.getMarUserName())
+                + "\n" + (getString(R.string.shop_name_mar) + " : " + mUser.getMarShopName())
+                + "\n" + (getString(R.string.mar_address) + " : " + mUser.getAddress())
+                + "\n" + (getString(R.string.mobile_no_mar) + " : " + mUser.getMobileNo()));
+                //intent.putExtra(Intent.EXTRA_TEXT, (getString(R.string.village_name) + " : " + mUser.getVillage().getMarVillageName()));
+                intent.setType("text/plain");
+
+                startActivity(intent);
                 break;
         }
     }

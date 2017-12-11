@@ -12,7 +12,6 @@
     <item
         android:id="@+id/nav_contact_us"
         android:title="@string/nav_contact_us" />
-
     <!--<item
         android:id="@+id/nav_notification"
         android:title="@string/nav_notification" />-->

@@ -22,8 +22,7 @@
     <ImageView
         android:id="@+id/iv_banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/banner_iv_height"
-        android:background="@drawable/ic_food_first" />
+        android:layout_height="@dimen/banner_iv_height"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_categories"
