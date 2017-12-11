@@ -59,7 +59,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, ServiceProvidersActivity.class);
-                    //intent.putExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY, Arrays.asList(category));
+                    intent.putExtra(ICommonConstants.KEY_CATEGORY_URL, category.getImgURL());
                     intent.putExtra(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID, categoryId);
                     intent.putExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY_ID, category.getSubCatID());
                     mContext.startActivity(intent);

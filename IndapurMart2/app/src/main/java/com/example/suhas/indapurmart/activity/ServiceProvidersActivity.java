@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.suhas.indapurmart.R;
@@ -23,6 +24,7 @@ import com.example.suhas.indapurmart.common.ICommonConstants;
 import com.example.suhas.indapurmart.common.IWebServices;
 import com.example.suhas.indapurmart.data.UserData;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
@@ -42,18 +44,20 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
     private static final String TAG = ServiceProvidersActivity.class.getSimpleName();
     private String catId;
     private String subCatId;
+    private String categoryImgURL;
     private static final String HEADER_KEY_CAT_ID = "catID";
     private static final String HEADER_KEY_SUB_CAT_ID = "subCatID";
     private static final String HEADER_KEY_VILLAGE_ID = "villages";
     private RecyclerView rvVillages;
     private TextView tvNoRecordFound;
     private Button btnRegister;
+    private ImageView ivBanner;
     private Context mContext;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_villeges);
+        setContentView(R.layout.activity_sub_category);
         Toolbar toolbar = findViewById(R.id.toolbar);
         mContext = this;
         Bundle args = getIntent().getExtras();
@@ -70,10 +74,15 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
             if (null != getSupportActionBar()) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
+            if (null != args && args.containsKey(ICommonConstants.KEY_CATEGORY_URL)) {
+                categoryImgURL = args.getString(ICommonConstants.KEY_CATEGORY_URL);
+            }
         }
         btnRegister = findViewById(R.id.btn_register);
         tvNoRecordFound = findViewById(R.id.tv_no_record_found);
         rvVillages = findViewById(R.id.rv_categories);
+        ivBanner = findViewById(R.id.iv_banner);
+
         rvVillages.setLayoutManager(new LinearLayoutManager(mContext));
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +91,12 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
                 startActivity(intent);
             }
         });
+
+        if (!TextUtils.isEmpty(categoryImgURL)) {
+            Picasso.with(this)
+                    .load(IWebServices.DOMAIN_NAME + categoryImgURL)
+                    .into(ivBanner);
+        }
     }
 
     @Override

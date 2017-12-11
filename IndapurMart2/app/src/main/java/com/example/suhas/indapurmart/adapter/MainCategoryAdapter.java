@@ -64,7 +64,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapte
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, SubCategoryActivity.class);
-                    //intent.putExtra(ICommonConstants.KEY_CATEGORY_TYPE, ICommonConstants.CATEGORY_SUB);
+                    intent.putExtra(ICommonConstants.KEY_CATEGORY_URL, category.getImgURL());
                     intent.putExtra(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID, category.getCategoryID());
                     List<SubCategory> subCategories = Arrays.asList(category.getSubCategory());
                     ArrayList<SubCategory> subCategories1 = new ArrayList<>();

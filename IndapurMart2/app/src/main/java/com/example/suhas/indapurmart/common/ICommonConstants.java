@@ -6,6 +6,7 @@ package com.example.suhas.indapurmart.common;
 
 public interface ICommonConstants {
     String KEY_CATEGORY_TYPE = "CATEGORY_TYPE";
+    String KEY_CATEGORY_URL = "CATEGORY_URL";
     String KEY_PARCELABLE_SUB_CATEGORY = "PARCELABLE_SUB_CATEGORY";
     String KEY_PARCELABLE_CATEGORY_ID = "PARCELABLE_CATEGORY_ID";
     String KEY_PARCELABLE_SUB_CATEGORY_ID = "PARCELABLE_SUB_CATEGORY_ID";
