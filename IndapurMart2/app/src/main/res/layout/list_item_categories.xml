@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_main_category"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="186dp"
-    android:layout_marginTop="@dimen/margin_4"
-    android:layout_marginLeft="@dimen/margin_2"
-    android:layout_marginRight="@dimen/margin_2"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_8"
+    android:layout_marginLeft="@dimen/margin_8"
+    android:layout_marginRight="@dimen/margin_8"
+    android:layout_marginTop="@dimen/cardview_default_radius"
+    app:cardCornerRadius="@dimen/margin_4"
+    card_view:cardCornerRadius="@dimen/cardview_default_radius">
 
-    <ImageView
-        android:id="@+id/iv_lic_bg"
-        android:layout_width="fill_parent"
-        android:layout_height="250dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_android_ui" />
-
-    <TextView
-        android:id="@+id/tv_category_title"
+    <RelativeLayout
+        android:id="@+id/rl_main_category"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/list_item_title_height"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black_overlay"
-        android:hint="@string/hint_title"
-        android:textSize="@dimen/text_size_16"
-        android:gravity="center"
-        android:text="abcd"
-        android:textColor="@color/colorAccent" />
+        android:layout_height="186dp"
+        android:layout_margin="@dimen/margin_4"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_lic_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_android_ui" />
+
+        <TextView
+            android:id="@+id/tv_category_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_title_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black_overlay"
+            android:gravity="center"
+            android:hint="@string/hint_title"
+            android:text="abcd"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_16" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -69,11 +69,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationLayout.setNavigationItemSelectedListener(this);
         mDemoSlider = findViewById(R.id.slider);
 
-        HashMap<String, Integer> file_maps = new HashMap<>();
-        file_maps.put("Hannibal", R.drawable.ic_hotel);
-        file_maps.put("Big Bang Theory", R.drawable.product_detail_img);
-        file_maps.put("House of Cards", R.drawable.metbkk_bkg_nahm_restaurant);
-        file_maps.put("Game of Thrones", R.drawable.ic_food_first);
+        HashMap<String, String> file_maps = new HashMap<>();
+        file_maps.put("Hannibal", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Automobiles_Garage.jpg");
+        file_maps.put("Big Bang Theory", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Architect.jpg");
+        file_maps.put("House of Cards", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Agnishamak.jpg");
+        file_maps.put("Game of Thrones", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Aachari.jpg");
+/*
+file_maps.put("Hannibal", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+        file_maps.put("Big Bang Theory", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+        file_maps.put("House of Cards", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+        file_maps.put("Game of Thrones", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+*/
 
         for (String name : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
