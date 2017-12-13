@@ -4,7 +4,7 @@
     <string name="hint_title">Title</string>
     <string name="dialog_msg_loading_data">Loading data</string>
     <string name="village_name">Village Name</string>
-    <string name="select_villages">Select village choice from blow list</string>
+    <string name="select_villages">कृपया तुम्हाला ज्या गावाची माहिती हवी आहे\nती गावे निवडा.</string>
     <string name="mar_owner_name">प्रो.प्रा %1$s</string>
     <string name="mar_phone_no">फोन नंबर</string>
     <string name="hint_mar_phone_no">phone Number</string>
@@ -13,19 +13,16 @@
     <string name="mar_sunday_off">रविवारी बंद</string>
     <string name="mar_address">पत्ता </string>
 
-    <string name="no_record_found"><u>No record found. \nDo you want to register?</u></string>
-    <string name="register">Register</string>
+    <string name="no_record_found"><u>सदर प्रकरणी कोणती ही नोंदनी नाही.\nकृपया नोंदनी करा.</u></string>
+    <string name="register">नोंदनी करा</string>
 
 
-    <string name="nav_village_selection">village selection</string>
-    <string name="nav_share_app">share app</string>
-    <string name="nav_register_shop">register shop</string>
-    <string name="nav_rate_us">Rate us</string>
-    <string name="nav_contact_us">Contact Us</string>
-    <string name="nav_mobile_no">Mobile No</string>
-    <string name="nav_email_address">Email address</string>
-    <string name="nav_notification">Notifications(Future)</string>
-    <string name="nav_about_us">About Us</string>
+    <string name="nav_village_selection">गावे निवड</string>
+    <string name="nav_share_app">शेर करा</string>
+    <string name="nav_register_shop">नोंदणी करा</string>
+    <string name="nav_rate_us">पसंती दर्शवा</string>
+    <string name="nav_contact_us">संपर्क साधा</string>
+    <string name="nav_about_us">आमच्या विषयी</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -41,25 +38,23 @@
     <string name="sub_category_mar">उप कॅटेगरी</string>
     <string name="submit">जतन करा</string>
     <string name="business_registration">उद्योगाची नोंद करा</string>
-    <string name="villege">गाव</string>
 
     <string name="txt_ok">OK</string>
 
-    <string name="title_about_us">About Us</string>
+    <string name="title_about_us">आमच्या विषयी</string>
     <string name="about_us">आमच्या विषयी :-\n\n
 इंदापूर मार्ट हे अँप्लिकेशन इंदापूर मधील सर्व उद्योगधांची माहिती एकत्र आणण्यासाठी बनवलेले आहे.
 या अँप्लिकेशन मध्ये तुमचे,तुमच्या व्यवसायाचे नाव,पत्ता  आणि मोबाईल नं अशी माहिती विविध कॅटेगरी आणि उपकॅटेगरी मध्ये विभागणी करून दाखवलेली आहे.इंदापूर मधील व्यवसाय सर्व लोकांपर्यंत पोहचवणे आणि लोकांना व्यवसायांपर्यंत पोहचवणे हा इंदापूर मार्ट चा उद्देश आहे.
     </string>
     <string name="terms_n_conditions">
         नियम आणि अटी : -\n\n
-
     १) इंदापूर मार्ट मध्ये नोंदणी केलेले मोबाईल नं अँप्लिकेशन मध्ये सर्वाना दिसणार आहेत त्यामुळे आपला प्रायव्हेट मोबाईल नं ने नोंदणी करू नये.
     २) इंदापूर मार्ट मध्ये नोंदणी झाल्यानंतर ती माहिती तपासल्यानंतरच अँप्लिकेशन वर दिसेल म्हणून योग्य ती माहिती भरावी.
     ३) नोंदणी केल्या नंतर आपली माहिती अँप्लिकेशन मध्ये दिसण्यासाठी २४ तासापर्यंत चा वेळ लाघु शकतो.
     </string>
 
-    <string name="about_us_title">About Us</string>
-    <string name="contact_us">Contact Us</string>
+    <string name="about_us_title">आमच्या विषयी</string>
+    <string name="contact_us">संपर्क साधा</string>
     <string name="contact_us_name">Developer : Suhas Bansode</string>
     <string name="contact_us_email">Email : <u>indapurmart@gmail.com</u></string>
     <string name="contact_us_no">Mobile No : <u>8668911016</u></string>
@@ -69,10 +64,16 @@
     <string name="cancel">CANCEL</string>
     <string name="go_to_setting">GO TO SETTING</string>
 
-    <string name="company_name">Company Name</string>
-    <string name="address">Address</string>
+    <string name="company_name">Email ID</string>
     <string name="phone">Phone : </string>
     <string name="contact_no"><u>866 891 1016</u></string>
 
-
+    <string name="msg_select_category">श्रेणी निवडा</string>
+    <string name="msg_select_sub_category">उप श्रेणी निवडा</string>
+    <string name="msg_select_village">गावा निवडा</string>
+    <string name="msg_enter_name">मराठीमध्ये नाव द्या</string>
+    <string name="msg_enter_shop_name">मराठीमध्ये दुकानाचे नाव द्या</string>
+    <string name="msg_enter_mobile_no">मोबाइल नंबर द्या</string>
+    <string name="msg_enter_shop_address_name">दुकानाचे पत्ता द्या</string>
+    <string name="msg_enter_shop_start_end_time">दुकानाचे सुरु आणि बंद वेळ लिहा</string>
 </resources>

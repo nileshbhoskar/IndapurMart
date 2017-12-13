@@ -55,9 +55,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     private List<String> mSubCategoryList;
     private VillageData villageData;
     private Context mContext;
-    private static final String LI_CATEGORY = "Select category";
-    private static final String LI_SUB_CATEGORY = "Select sub category";
-    private static final String LI_SELECT_VILLAGE = "Select Village";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +62,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_register_shop);
         mContext = this;
         Toolbar toolbar = findViewById(R.id.toolbar);
-        //etEngName = findViewById(R.id.et_eng_name);
-        //etEngShopName = findViewById(R.id.et_eng_shop_name);
         etMarName = findViewById(R.id.et_mar_name);
         etMarShopName = findViewById(R.id.et_mar_shop_name);
         etMobileNumber = findViewById(R.id.et_mobile_number);
@@ -88,17 +83,17 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         loadCategoryData();
         loadVillageData();
         List<String> defaultList = new ArrayList();
-        defaultList.add(LI_SUB_CATEGORY);
+        defaultList.add(getString(R.string.msg_select_sub_category));
         ArrayAdapter<String> defaultAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
         spinnerSubCategory.setAdapter(defaultAdapter);
 
         defaultList = new ArrayList();
-        defaultList.add(LI_CATEGORY);
+        defaultList.add(getString(R.string.msg_select_category));
         defaultAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
         spinnerCategory.setAdapter(defaultAdapter);
 
         defaultList = new ArrayList();
-        defaultList.add(LI_SELECT_VILLAGE);
+        defaultList.add(getString(R.string.msg_select_village));
         defaultAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, defaultList);
         spinnerVillage.setAdapter(defaultAdapter);
 
@@ -164,54 +159,49 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         Log.i(TAG, "params::" + params);
         WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
         NetworkRequests networkRequests = reference.get();
-        networkRequests.webRequestPOSTString(mContext, IWebServices.URL_SAVE_VILLAGES_USERDATA, params, "", false, this);
+        networkRequests.webRequestPOSTString(mContext, IWebServices.URL_SAVE_VILLAGES_USERDATA, params, "storing data", true, this);
     }
 
     private boolean validateFields() {
 
-        if (spinnerCategory.getSelectedItem().toString().equals(LI_CATEGORY)) {
+        if (spinnerCategory.getSelectedItem().toString().equals(getString(R.string.msg_select_category))) {
             spinnerCategory.requestFocus();
-            Toast.makeText(this, "Select category", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.msg_select_category), Toast.LENGTH_LONG).show();
             return false;
         }
-        if (spinnerVillage.getSelectedItem().toString().equals(LI_SUB_CATEGORY)) {
+        if (spinnerSubCategory.getSelectedItem().toString().equals(getString(R.string.msg_select_sub_category))) {
+            spinnerSubCategory.requestFocus();
+            Toast.makeText(this, getString(R.string.msg_select_sub_category), Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (spinnerVillage.getSelectedItem().toString().equals(getString(R.string.msg_select_village))) {
             spinnerVillage.requestFocus();
-            Toast.makeText(this, "Select sub category", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.msg_select_village), Toast.LENGTH_LONG).show();
             return false;
         }
         if (TextUtils.isEmpty(etMarName.getText().toString())) {
             etMarName.requestFocus();
-            etMarName.setError("Enter Name in Marathi");
+            etMarName.setError(getString(R.string.msg_enter_name));
             return false;
         }
-        /*if (TextUtils.isEmpty(etEngName.getText().toString())) {
-            etEngName.requestFocus();
-            etEngName.setError("Enter Name in English");
-            return false;
-        }
-        if (TextUtils.isEmpty(etEngShopName.getText().toString())) {
-            etEngShopName.requestFocus();
-            etEngShopName.setError("Enter Shop Name in English");
-            return false;
-        }*/
         if (TextUtils.isEmpty(etMarShopName.getText().toString())) {
             etMarShopName.requestFocus();
-            etMarShopName.setError("Enter Shop Name in Marathi");
+            etMarShopName.setError(getString(R.string.msg_enter_shop_name));
             return false;
         }
         if (TextUtils.isEmpty(etMobileNumber.getText().toString())) {
             etMobileNumber.requestFocus();
-            etMobileNumber.setError("Enter Mobile Number");
+            etMobileNumber.setError(getString(R.string.msg_enter_mobile_no));
             return false;
         }
         if (TextUtils.isEmpty(etShopAddress.getText().toString())) {
             etShopAddress.requestFocus();
-            etShopAddress.setError("Enter Shop Address");
+            etShopAddress.setError(getString(R.string.msg_enter_shop_address_name));
             return false;
         }
         if (TextUtils.isEmpty(etShopTime.getText().toString())) {
             etShopTime.requestFocus();
-            etShopTime.setError("Enter shop start and end timing");
+            etShopTime.setError(getString(R.string.msg_enter_shop_start_end_time));
             return false;
         }
 
@@ -225,7 +215,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         switch (adapterView.getId()) {
             case R.id.spinner_category:
                 String categoryName = spinnerCategory.getSelectedItem().toString();
-                if (!categoryName.equals(LI_CATEGORY)) {
+                if (!categoryName.equals(getString(R.string.msg_select_category))) {
                     Log.i(TAG, "onItemSelected::inside if");
                     Category category1 = null;
                     for (Category category : mCategoryData) {
@@ -248,7 +238,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
                     Log.i(TAG, "onItemSelected::mSubCategoryList::" + mSubCategoryList.toString());
                     Log.i(TAG, "onItemSelected::category1::" + category1.toString());
                     Log.i(TAG, "onItemSelected::");
-                    mSubCategoryList.add(0, LI_SUB_CATEGORY);
+                    mSubCategoryList.add(0, getString(R.string.msg_select_sub_category));
                     spinnerSubCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mSubCategoryList));
                 } else {
                     Log.i(TAG, "onItemSelected::inside else");
@@ -306,8 +296,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         Log.i(TAG, "networkResponse :: resp ::" + resp);
         if (resp.contains("enCategoryName") && resp.contains("marCategoryName")) {
             CategoryData categoryData = new Gson().fromJson(resp, CategoryData.class);
-            //if (null == subCategories) {
-            //Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + mCategoryData);
             mCategoryData = categoryData.getResult();
             if (null == mCategoryList) {
                 mCategoryList = new ArrayList();
@@ -315,7 +303,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             for (Category category : mCategoryData) {
                 mCategoryList.add(category.getMarCategoryName());
             }
-            mCategoryList.add(0, LI_CATEGORY);
+            mCategoryList.add(0, getString(R.string.msg_select_category));
 
             spinnerCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mCategoryList));
         } else if (resp.contains("VillageID")) {
@@ -327,7 +315,6 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             }
             villages.add(0, "select Village");
             spinnerVillage.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, villages));
-            //{"statusCode":200,"result":true}
         } else if (resp.contains("statusCode") && resp.contains("result")) {
             if (resp.contains("200") && resp.contains("true")) {
                 showToastMsg(mContext, "Registration completed");

@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -29,9 +28,7 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.suhas.indapurmart.BuildConfig;
 import com.example.suhas.indapurmart.R;
 import com.example.suhas.indapurmart.adapter.MainCategoryAdapter;
-import com.example.suhas.indapurmart.adapter.SubCategoryAdapter;
 import com.example.suhas.indapurmart.adapter.VillagesListAdapter;
-import com.example.suhas.indapurmart.beans.SubCategory;
 import com.example.suhas.indapurmart.beans.Village;
 import com.example.suhas.indapurmart.common.ICommonConstants;
 import com.example.suhas.indapurmart.common.IWebServices;
@@ -40,7 +37,6 @@ import com.example.suhas.indapurmart.data.VillageData;
 import com.google.gson.Gson;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -53,8 +49,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView rvMainCategory;
-    private ArrayList<SubCategory> subCategories;
-    private String catID;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationLayout;
     private ActionBarDrawerToggle mActionBarToggle;
@@ -75,11 +69,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationLayout.setNavigationItemSelectedListener(this);
         mDemoSlider = findViewById(R.id.slider);
 
-        HashMap<String, Integer> file_maps = new HashMap<>();
-        file_maps.put("Hannibal", R.drawable.ic_hotel);
-        file_maps.put("Big Bang Theory", R.drawable.product_detail_img);
-        file_maps.put("House of Cards", R.drawable.metbkk_bkg_nahm_restaurant);
-        file_maps.put("Game of Thrones", R.drawable.ic_food_first);
+        HashMap<String, String> file_maps = new HashMap<>();
+        file_maps.put("Hannibal", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Automobiles_Garage.jpg");
+        file_maps.put("Big Bang Theory", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Architect.jpg");
+        file_maps.put("House of Cards", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Agnishamak.jpg");
+        file_maps.put("Game of Thrones", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Aachari.jpg");
+/*
+file_maps.put("Hannibal", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+        file_maps.put("Big Bang Theory", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+        file_maps.put("House of Cards", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+        file_maps.put("Game of Thrones", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
+*/
 
         for (String name : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
@@ -97,28 +97,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             mDemoSlider.addSlider(textSliderView);
         }
-
         mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
         mDemoSlider.addOnPageChangeListener(this);
 
-        Intent intent = getIntent();
-        if (null == intent) {
-            mNavigationLayout.setVisibility(View.VISIBLE);
-        }
+        mNavigationLayout.setVisibility(View.VISIBLE);
 
-        if (null != intent && intent.hasExtra(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID)) {
-            catID = intent.getStringExtra(ICommonConstants.KEY_PARCELABLE_CATEGORY_ID);
-            mNavigationLayout.setVisibility(View.GONE);
-            if (null != getSupportActionBar()) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            }
-        }
-        if (null != intent && intent.hasExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY)) {
-            subCategories = intent.getParcelableArrayListExtra(ICommonConstants.KEY_PARCELABLE_SUB_CATEGORY);
-        }
         rvMainCategory = findViewById(R.id.rv_categories);
         rvMainCategory.setLayoutManager(new GridLayoutManager(this, 2));
 
@@ -146,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void villageListDlg(final Context context, List<Village> villages) {
+    public void villageListDialog(final Context context, List<Village> villages) {
         View promptsView = View.inflate(this, R.layout.dialog_village_list, null);
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
@@ -154,6 +140,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final RecyclerView etQuantity = promptsView.findViewById(R.id.rv_village_list);
         final Button btnClose = promptsView.findViewById(R.id.btn_close);
         etQuantity.setLayoutManager(new LinearLayoutManager(this));
+        String villageList = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
+        Log.i(TAG, "villageList::" + villageList);
+        String[] villageIds = villageList.split(",");
+        for (String id : villageIds) {
+            Log.i(TAG, "id ::id::" + id);
+            for (Village village : villages) {
+                if (id.contains(village.getVillageID())) {
+                    Log.i(TAG, "id exist::id::" + id);
+                    village.setSelected(true);
+                }
+            }
+        }
         etQuantity.setAdapter(new VillagesListAdapter(this, villages));
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -164,19 +162,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 alertDialog.dismiss();
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override
@@ -254,18 +239,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (resp.contains("VillageID")) {
             //mGetVillage = false;
             VillageData villageData = new Gson().fromJson(resp, VillageData.class);
-            villageListDlg(this, Arrays.asList(villageData.getResult()));
+            villageListDialog(this, Arrays.asList(villageData.getResult()));
         } else {
             CategoryData categoryList = new Gson().fromJson(resp, CategoryData.class);
-            if (null == subCategories) {
-                Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + categoryList);
-                MainCategoryAdapter adapter = new MainCategoryAdapter(this, Arrays.asList(categoryList.getResult()), ICommonConstants.CATEGORY_MAIN);
-                rvMainCategory.setAdapter(adapter);
-            } else {
-                Log.i(TAG, "networkResponse :: InitializeSub CategoryData::" + categoryList);
-                SubCategoryAdapter adapter = new SubCategoryAdapter(this, subCategories, catID);
-                rvMainCategory.setAdapter(adapter);
-            }
+            Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + categoryList);
+            MainCategoryAdapter adapter = new MainCategoryAdapter(this, Arrays.asList(categoryList.getResult()), ICommonConstants.CATEGORY_MAIN);
+            rvMainCategory.setAdapter(adapter);
         }
     }
 

@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="156dp"
                 android:layout_marginTop="@dimen/margin_8"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_launcher" />
 
         </LinearLayout>
 
@@ -49,7 +49,7 @@
             android:layout_marginLeft="@dimen/margin_32"
             android:layout_marginRight="@dimen/margin_32"
             android:layout_marginTop="@dimen/margin_32"
-            android:text="@string/about_us_title" />
+            android:text="@string/about_us" />
 
     </LinearLayout>
 </ScrollView>

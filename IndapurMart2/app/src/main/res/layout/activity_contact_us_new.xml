@@ -34,7 +34,7 @@
                 android:id="@+id/iv_contact_us_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_launcher" />
         </LinearLayout>
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:gravity="center"
-            android:hint="@string/address"
+            android:text="@string/contact_us_email"
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_size_16" />
 

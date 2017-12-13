@@ -10,9 +10,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/select_villages"
-        android:textSize="@dimen/text_size_20"
+        android:textSize="@dimen/text_size_16"
         android:textColor="@color/black"
-        android:layout_margin="@dimen/margin_8"/>
+        android:layout_margin="@dimen/margin_4"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="@dimen/margin_4"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_village_list"
