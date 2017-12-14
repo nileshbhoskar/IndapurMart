@@ -313,7 +313,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             for (Village village : villageData.getResult()) {
                 villages.add(village.getMarVillageName());
             }
-            villages.add(0, "select Village");
+            villages.add(0, getString(R.string.nav_village_selection));
             spinnerVillage.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, villages));
         } else if (resp.contains("statusCode") && resp.contains("result")) {
             if (resp.contains("200") && resp.contains("true")) {

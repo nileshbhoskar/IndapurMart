@@ -17,7 +17,7 @@
     <string name="register">नोंदनी करा</string>
 
 
-    <string name="nav_village_selection">गावे निवड</string>
+    <string name="nav_village_selection">गावे निवडा</string>
     <string name="nav_share_app">शेर करा</string>
     <string name="nav_register_shop">नोंदणी करा</string>
     <string name="nav_rate_us">पसंती दर्शवा</string>
@@ -61,7 +61,7 @@
 
     <string name="marathi_input_inst">To provide inputs in marathi you need to select keyboard language as marathi from settings.</string>
     <string name="ok">OK</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel">Cancel</string>
     <string name="go_to_setting">GO TO SETTING</string>
 
     <string name="company_name">Email ID</string>

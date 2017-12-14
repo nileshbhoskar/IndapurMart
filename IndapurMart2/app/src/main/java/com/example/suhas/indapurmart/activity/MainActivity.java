@@ -40,6 +40,7 @@ import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import nbit.com.networkreauest.request.NetworkRequests;
 import nbit.com.networkreauest.util.IResponseListener;
@@ -70,10 +71,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDemoSlider = findViewById(R.id.slider);
 
         HashMap<String, String> file_maps = new HashMap<>();
-        file_maps.put("Hannibal", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Automobiles_Garage.jpg");
-        file_maps.put("Big Bang Theory", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Architect.jpg");
-        file_maps.put("House of Cards", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Agnishamak.jpg");
-        file_maps.put("Game of Thrones", "https://indapurmart.herokuapp.com/indapurmart/app1/images/Aachari.jpg");
+        file_maps.put("Hannibal", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd1.jpg ");
+        file_maps.put("Hannibal", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd2.jpg ");
+        file_maps.put("Hannibal", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd3.jpg ");
+        file_maps.put("Big Bang Theory", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd4.jpg ");
+        file_maps.put("House of Cards", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd5.jpg ");
+        file_maps.put("Game of Thrones", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd6.jpg ");
 /*
 file_maps.put("Hannibal", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
         file_maps.put("Big Bang Theory", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
@@ -140,15 +143,17 @@ file_maps.put("Hannibal", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER +
         final RecyclerView etQuantity = promptsView.findViewById(R.id.rv_village_list);
         final Button btnClose = promptsView.findViewById(R.id.btn_close);
         etQuantity.setLayoutManager(new LinearLayoutManager(this));
-        String villageList = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
-        Log.i(TAG, "villageList::" + villageList);
-        String[] villageIds = villageList.split(",");
-        for (String id : villageIds) {
-            Log.i(TAG, "id ::id::" + id);
-            for (Village village : villages) {
-                if (id.contains(village.getVillageID())) {
-                    Log.i(TAG, "id exist::id::" + id);
-                    village.setSelected(true);
+        Set<String> villageSet = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
+        if (null != villageSet) {
+            Log.e(TAG, "empty set");
+            for (String id : villageSet) {
+                Log.i(TAG, "id ::id::" + id);
+                for (Village village : villages) {
+                    if (id.contains(village.getVillageID())) {
+                        Log.i(TAG, "id exist::id::" + id);
+                        village.setSelected(true);
+                        continue;
+                    }
                 }
             }
         }

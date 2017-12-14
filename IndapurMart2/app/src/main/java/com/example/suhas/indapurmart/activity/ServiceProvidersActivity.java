@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import nbit.com.networkreauest.request.NetworkRequests;
 import nbit.com.networkreauest.util.IResponseListener;
@@ -103,10 +104,15 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
     public void onStart() {
         super.onStart();
         SharedPreferences preferences = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        String villageList = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
-        if (TextUtils.isEmpty(villageList)) {
-        }
-        villageList = "[]";
+        String villageList = "[]";
+        /*Set<String> villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
+        if (null != villageList) {
+            villageList = "";
+            for (String villageId : villageSet){
+                villageList = "\"" + villageList + "\"";
+                villageList += ",";
+            }
+        }*/
         WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
         NetworkRequests networkRequests = reference.get();
         Map<String, String> params = new HashMap<>();

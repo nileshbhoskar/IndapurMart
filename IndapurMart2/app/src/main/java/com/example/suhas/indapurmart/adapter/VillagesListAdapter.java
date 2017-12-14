@@ -13,7 +13,9 @@ import com.example.suhas.indapurmart.R;
 import com.example.suhas.indapurmart.beans.Village;
 import com.example.suhas.indapurmart.common.ICommonConstants;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bhoskar1 on 12/10/17.
@@ -85,31 +87,24 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                     SharedPreferences preferences = mContext.getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, mContext.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     if (cbSelectedVillage.isChecked()) {
-                        String villagesArray;
+                        Set<String> villageSet;
                         if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
-                            villagesArray = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
-                            String replaced = villagesArray.replace("]", ",\"");
-                            replaced = replaced + village.getVillageID() + "\"]";
-                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, replaced);
-
+                            villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
+                            villageSet.add(village.getVillageID());
+                            editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
                         } else {
-                            villagesArray = "[\"" + village.getVillageID() + "\"]";
-                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villagesArray);
+                            villageSet = new HashSet<>();
+                            editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
                         }
                         editor.apply();
-                    } /*else if (!cbSelectedVillage.isChecked()){
-                        String villagesArray;
+                    } else if (!cbSelectedVillage.isChecked()){
+                        Set<String> villageSet;
                         if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
-                            villagesArray = preferences.getString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, "");
-                            String replaced = villagesArray.replace("]", ",\"");
-                            replaced = replaced + village.getVillageID() + "\"]";
-                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, replaced);
-
-                        } else {
-                            villagesArray = "[\"" + village.getVillageID() + "\"]";
-                            editor.putString(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villagesArray);
+                            villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
+                            villageSet.remove(village.get_id());
+                            editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
                         }
-                    }*/
+                    }
                     break;
             }
         }
