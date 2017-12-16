@@ -77,12 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         file_maps.put("Big Bang Theory", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd4.jpg ");
         file_maps.put("House of Cards", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd5.jpg ");
         file_maps.put("Game of Thrones", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd6.jpg ");
-/*
-file_maps.put("Hannibal", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
-        file_maps.put("Big Bang Theory", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
-        file_maps.put("House of Cards", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
-        file_maps.put("Game of Thrones", IWebServices.DOMAIN_NAME  + IWebServices.URL_DIVIDER + );
-*/
 
         for (String name : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);

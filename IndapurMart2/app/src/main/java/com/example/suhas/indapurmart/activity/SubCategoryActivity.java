@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.example.suhas.indapurmart.R;
@@ -56,11 +57,12 @@ public class SubCategoryActivity extends AppCompatActivity {
         SubCategoryAdapter adapter = new SubCategoryAdapter(this, subCategories, catID);
         rvMainCategory.setAdapter(adapter);
 
-        if (!TextUtils.isEmpty(categoryImgURL)) {
+        /*if (!TextUtils.isEmpty(categoryImgURL)) {
             Picasso.with(this)
                     .load(IWebServices.DOMAIN_NAME + categoryImgURL)
                     .into(ivBanner);
-        }
+        }*/
+        ivBanner.setVisibility(View.GONE);
     }
 
     @Override

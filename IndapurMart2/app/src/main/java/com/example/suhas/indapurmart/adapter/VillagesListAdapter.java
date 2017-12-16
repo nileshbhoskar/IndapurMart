@@ -88,22 +88,30 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                     SharedPreferences.Editor editor = preferences.edit();
                     if (cbSelectedVillage.isChecked()) {
                         Set<String> villageSet;
+                        Log.i(TAG,"Select village::" + village.getMarVillageName());
                         if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
+                            Log.i(TAG,"Select if contains key::");
                             villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
                             villageSet.add(village.getVillageID());
                             editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
                         } else {
+                            Log.i(TAG,"Select else not contains key::");
                             villageSet = new HashSet<>();
                             editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
                         }
                         editor.apply();
                     } else if (!cbSelectedVillage.isChecked()){
                         Set<String> villageSet;
+                        Log.i(TAG,"unSelect village::" + village.getMarVillageName());
                         if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
+                            Log.i(TAG,"unSelect if contains key::");
                             villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
-                            villageSet.remove(village.get_id());
-                            editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
+                            if (villageSet != null) {
+                                villageSet.remove(village.getVillageID());
+                                editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
+                            }
                         }
+                        editor.apply();
                     }
                     break;
             }

@@ -231,6 +231,8 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
                     }
                     if (mSubCategoryList == null) {
                         mSubCategoryList = new ArrayList<>();
+                    } else {
+                        mSubCategoryList.clear();
                     }
                     for (SubCategory subCategory : category1.getSubCategory()) {
                         mSubCategoryList.add(subCategory.getMarSubCatName());

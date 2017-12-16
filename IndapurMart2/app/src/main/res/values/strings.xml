@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IndapurMart</string>
+    <string name="app_name">इंदापूर मार्ट</string>
     <string name="action_settings">Settings</string>
     <string name="hint_title">Title</string>
     <string name="dialog_msg_loading_data">Loading data</string>
@@ -59,7 +59,7 @@
     <string name="contact_us_email">Email : <u>indapurmart@gmail.com</u></string>
     <string name="contact_us_no">Mobile No : <u>8668911016</u></string>
 
-    <string name="marathi_input_inst">To provide inputs in marathi you need to select keyboard language as marathi from settings.</string>
+    <string name="marathi_input_inst">मराठी मध्ये माहिती प्रदान करण्यासाठी आपल्याला सेटींग मधून मराठी भाषा निवडणे आवश्यक आहे.</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="go_to_setting">GO TO SETTING</string>
