@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.suhas.indapurmart.BuildConfig;
 import com.example.suhas.indapurmart.R;
 
 public class ContactUsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,7 +21,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
         Toolbar tbContactUs = findViewById(R.id.tb_contact_us);
         //TextView tv_contact_us_name = findViewById(R.id.tv_contact_us_name);
         TextView tvContactUsNo = findViewById(R.id.tv_contact_us_no);
-        //TextView tvContactUsEmail = findViewById(R.id.tv_contact_us_email);
+        TextView tvAppVersion = findViewById(R.id.tv_app_version);
         tbContactUs.setTitle(getString(R.string.contact_us));
         setSupportActionBar(tbContactUs);
         if (null != getSupportActionBar()) {
@@ -28,6 +29,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
             getSupportActionBar().setTitle(getString(R.string.contact_us));
         }
         tvContactUsNo.setOnClickListener(this);
+        tvAppVersion.setText(("V " + BuildConfig.VERSION_NAME));
         //tvContactUsEmail.setOnClickListener(this);
     }
 

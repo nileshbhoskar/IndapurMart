@@ -189,7 +189,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             etMarShopName.setError(getString(R.string.msg_enter_shop_name));
             return false;
         }
-        if (TextUtils.isEmpty(etMobileNumber.getText().toString())) {
+        if (TextUtils.isEmpty(etMobileNumber.getText().toString()) || etMobileNumber.getText().length() < 9) {
             etMobileNumber.requestFocus();
             etMobileNumber.setError(getString(R.string.msg_enter_mobile_no));
             return false;
@@ -308,7 +308,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
             mCategoryList.add(0, getString(R.string.msg_select_category));
 
             spinnerCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mCategoryList));
-        } else if (resp.contains("VillageID")) {
+        } else if (resp.contains("villageID")) {
 
             villageData = new Gson().fromJson(resp, VillageData.class);
             List<String> villages = new ArrayList<>();

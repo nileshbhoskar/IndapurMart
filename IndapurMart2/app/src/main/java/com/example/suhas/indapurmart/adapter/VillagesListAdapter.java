@@ -77,6 +77,12 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                 Log.i(TAG,"Village ::settingSelected::" + village.getVillageID());
 
                 cbSelectedVillage.setChecked(true);
+            } else if (village.isSelected()){
+                cbSelectedVillage.setChecked(false);
+
+            } else {
+                cbSelectedVillage.setChecked(false);
+
             }
         }
 

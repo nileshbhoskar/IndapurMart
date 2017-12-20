@@ -5,7 +5,7 @@ package com.example.suhas.indapurmart.beans;
  */
 
 public class Village {
-    private String VillageID;
+    private String villageID;
     private String enVillageName;
     private String marVillageName;
     private String _id;
@@ -14,11 +14,11 @@ public class Village {
     private boolean isSelected;
 
     public String getVillageID() {
-        return VillageID;
+        return villageID;
     }
 
     public void setVillageID(String villageID) {
-        VillageID = villageID;
+        this.villageID = villageID;
     }
 
     public String getEnVillageName() {
@@ -72,7 +72,7 @@ public class Village {
     @Override
     public String toString() {
         return "VillageData{" +
-                "VillageID='" + VillageID + '\'' +
+                "villageID='" + villageID + '\'' +
                 ", enVillageName='" + enVillageName + '\'' +
                 ", marVillageName='" + marVillageName + '\'' +
                 ", _id='" + _id + '\'' +

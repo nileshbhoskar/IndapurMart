@@ -71,12 +71,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDemoSlider = findViewById(R.id.slider);
 
         HashMap<String, String> file_maps = new HashMap<>();
-        file_maps.put("Hannibal", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd1.jpg ");
-        file_maps.put("Hannibal", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd2.jpg ");
-        file_maps.put("Hannibal", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd3.jpg ");
-        file_maps.put("Big Bang Theory", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd4.jpg ");
-        file_maps.put("House of Cards", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd5.jpg ");
-        file_maps.put("Game of Thrones", "http://139.59.7.238/resource/indapurmart/app1/images/imadds/indapurmartadd6.jpg ");
+        file_maps.put("xyzab", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd1.jpg ");
+        file_maps.put("abcde", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd2.jpg ");
+        file_maps.put("Hannibal", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd3.jpg ");
+        file_maps.put("Big Bang Theory", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd4.jpg ");
+        file_maps.put("House of Cards", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd5.jpg ");
+        file_maps.put("Game of Thrones", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd6.jpg ");
 
         for (String name : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent();
         if (id == R.id.nav_village_selection) {
             loadVillageList(true);
+            return true;
         } else if (id == R.id.nav_share_app) {
             openShareAppDialog();
         } else if (id == R.id.nav_register_shop) {
@@ -235,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Log.i(TAG, "networkResponse :: resp ::" + resp);
 
-        if (resp.contains("VillageID")) {
+        if (resp.contains("villageID")) {
             //mGetVillage = false;
             VillageData villageData = new Gson().fromJson(resp, VillageData.class);
             villageListDialog(this, Arrays.asList(villageData.getResult()));

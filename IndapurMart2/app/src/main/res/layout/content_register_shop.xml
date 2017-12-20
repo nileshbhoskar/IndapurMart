@@ -54,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:maxLength="10"
                 android:hint="@string/mobile_no_mar" />
 
         </android.support.design.widget.TextInputLayout>
@@ -91,6 +92,11 @@
                 android:hint="@string/shop_open_time_mar" />
 
         </android.support.design.widget.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/time"/>
 
         <Spinner
             android:id="@+id/spinner_category"

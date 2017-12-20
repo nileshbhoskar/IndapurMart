@@ -7,8 +7,8 @@ package com.example.suhas.indapurmart.common;
 
 public interface IWebServices {
 
-    //String DOMAIN_NAME = "http://192.168.1.105";
-    String DOMAIN_NAME = "https://indapurmart.herokuapp.com";
+    String DOMAIN_NAME = "http://indapurmart.smartcoderworld.com";
+    //String DOMAIN_NAME = "https://indapurmart.herokuapp.com";
     //String PORT = "8000";
     String SUB_DIR_1 = "indapurmart";
     String SUB_DIR_2 = "app1";

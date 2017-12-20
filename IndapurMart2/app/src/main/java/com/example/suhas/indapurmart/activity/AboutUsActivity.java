@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.suhas.indapurmart.BuildConfig;
 import com.example.suhas.indapurmart.R;
 
 public class AboutUsActivity extends AppCompatActivity {
@@ -18,8 +19,10 @@ public class AboutUsActivity extends AppCompatActivity {
         Toolbar tbAboutUs = findViewById(R.id.tb_about_us);
         TextView tvAboutUsText = findViewById(R.id.tv_about_us_text);
         ImageView ivAppLogo = findViewById(R.id.iv_app_logo);
+        TextView tvAppVersion = findViewById(R.id.tv_app_version);
         tbAboutUs.setTitle(getString(R.string.title_about_us));
-        tbAboutUs.setTitle(getString(R.string.about_us_title));
+        tvAppVersion.setText(("V " + BuildConfig.VERSION_NAME));
+
         setSupportActionBar(tbAboutUs);
         if (null != getSupportActionBar()) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -24,40 +24,117 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="156dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center">
+            android:layout_height="216dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_contact_us_logo"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="156dp"
                 android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_20" />
+
+            <TextView
+                android:id="@+id/tv_app_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/text_size_16" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_comp_name"
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:card_view="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:gravity="center"
-            android:hint="@string/company_name"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_size_20" />
+            android:layout_marginBottom="@dimen/margin_8"
+            android:layout_marginLeft="@dimen/margin_16"
+            android:layout_marginRight="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_36"
+            app:cardCornerRadius="@dimen/margin_4"
+            card_view:cardCornerRadius="@dimen/cardview_default_radius">
 
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:gravity="center"
-            android:text="@string/contact_us_email"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_size_16" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:text="@string/email_id"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/tv_email_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_toRightOf="@id/tv_email"
+                    android:text="@string/contact_us_email"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_email"
+                    android:layout_marginLeft="@dimen/margin_16"
+                    android:layout_marginRight="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_weight="4"
+                    android:background="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_contact_us"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:text="@string/call_us"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/tv_contact_us_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tv_email_id"
+                    android:layout_below="@id/view"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_toRightOf="@id/tv_contact_us"
+                    android:text="@string/contact_no"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_16" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
@@ -127,6 +204,6 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
 </ScrollView>
