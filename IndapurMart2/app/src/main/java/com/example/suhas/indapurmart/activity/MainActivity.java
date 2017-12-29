@@ -2,6 +2,7 @@ package com.example.suhas.indapurmart.activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -29,9 +30,11 @@ import com.example.suhas.indapurmart.BuildConfig;
 import com.example.suhas.indapurmart.R;
 import com.example.suhas.indapurmart.adapter.MainCategoryAdapter;
 import com.example.suhas.indapurmart.adapter.VillagesListAdapter;
+import com.example.suhas.indapurmart.beans.BannerImage;
 import com.example.suhas.indapurmart.beans.Village;
 import com.example.suhas.indapurmart.common.ICommonConstants;
 import com.example.suhas.indapurmart.common.IWebServices;
+import com.example.suhas.indapurmart.data.BannerImageData;
 import com.example.suhas.indapurmart.data.CategoryData;
 import com.example.suhas.indapurmart.data.VillageData;
 import com.google.gson.Gson;
@@ -39,14 +42,17 @@ import com.google.gson.Gson;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import nbit.com.networkreauest.request.NetworkRequests;
 import nbit.com.networkreauest.util.IResponseListener;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IResponseListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class MainActivity extends AppCompatActivity implements DialogInterface.OnDismissListener, NavigationView.OnNavigationItemSelectedListener, IResponseListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView rvMainCategory;
@@ -54,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView mNavigationLayout;
     private ActionBarDrawerToggle mActionBarToggle;
     private SliderLayout mDemoSlider;
+    public static Set<String> selectedVillageList = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +77,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationLayout.setNavigationItemSelectedListener(this);
         mDemoSlider = findViewById(R.id.slider);
 
-        HashMap<String, String> file_maps = new HashMap<>();
-        file_maps.put("xyzab", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd1.jpg ");
-        file_maps.put("abcde", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd2.jpg ");
-        file_maps.put("Hannibal", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd3.jpg ");
-        file_maps.put("Big Bang Theory", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd4.jpg ");
-        file_maps.put("House of Cards", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd5.jpg ");
-        file_maps.put("Game of Thrones", "http://indapurmart.smartcoderworld.com/resource/indapurmart/app1/images/imadds/indapurmartadd6.jpg ");
+
+        mNavigationLayout.setVisibility(View.VISIBLE);
+
+        rvMainCategory = findViewById(R.id.rv_categories);
+        rvMainCategory.setLayoutManager(new GridLayoutManager(this, 2));
+
+        //loadJSONFromAsset();
+        WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
+        NetworkRequests networkRequests = reference.get();
+
+        networkRequests.webRequestGETString(this, IWebServices.URL_CATEGORIES, getString(R.string.dialog_msg_loading_data), true, this);
+        loadBannerImagesList();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    private void bannerSlider(Map<String, String> file_maps) {
+        Log.i(TAG, "bannerSlider::file_maps::" + file_maps);
 
         for (String name : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
@@ -99,24 +120,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
         mDemoSlider.addOnPageChangeListener(this);
-
-        mNavigationLayout.setVisibility(View.VISIBLE);
-
-        rvMainCategory = findViewById(R.id.rv_categories);
-        rvMainCategory.setLayoutManager(new GridLayoutManager(this, 2));
-
-        //loadJSONFromAsset();
-        WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
-        NetworkRequests networkRequests = reference.get();
-
-        networkRequests.webRequestGETString(this, IWebServices.URL_CATEGORIES, getString(R.string.dialog_msg_loading_data), true, this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences preferences = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE);
-        loadVillageList(!preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST));
+        /*SharedPreferences preferences = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE);
+        loadVillageList(!preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST));*/
+    }
+
+    private void loadBannerImagesList() {
+        Log.i(TAG, "loadBannerImagesList::");
+        WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
+        NetworkRequests networkRequests = reference.get();
+
+        networkRequests.webRequestGETString(this, IWebServices.URL_ADD_WORLD, getString(R.string.dialog_msg_loading_data), true, this);
     }
 
     private void loadVillageList(boolean makeRequest) {
@@ -124,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (makeRequest) {
             WeakReference<NetworkRequests> reference = new WeakReference<>(new NetworkRequests());
             NetworkRequests networkRequests = reference.get();
-
             networkRequests.webRequestGETString(this, IWebServices.URL_VILLAGES, getString(R.string.dialog_msg_loading_data), true, this);
         }
     }
@@ -137,13 +154,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final RecyclerView etQuantity = promptsView.findViewById(R.id.rv_village_list);
         final Button btnClose = promptsView.findViewById(R.id.btn_close);
         etQuantity.setLayoutManager(new LinearLayoutManager(this));
-        Set<String> villageSet = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
-        if (null != villageSet) {
+        selectedVillageList = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
+        //Set<String> villageSet = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
+        Log.i(TAG,"villageListDialog::"+selectedVillageList);
+        if (null != selectedVillageList && selectedVillageList.size() > 0) {
             Log.e(TAG, "empty set");
-            for (String id : villageSet) {
+            for (String id : selectedVillageList) {
                 Log.i(TAG, "id ::id::" + id);
                 for (Village village : villages) {
-                    if (id.contains(village.getVillageID())) {
+                    if (id.contains(village.getMarVillageName())) {
                         Log.i(TAG, "id exist::id::" + id);
                         village.setSelected(true);
                         continue;
@@ -154,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         etQuantity.setAdapter(new VillagesListAdapter(this, villages));
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-
+        alertDialog.setOnDismissListener(this);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,9 +216,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.setClass(this, ContactUsActivity.class);
             startActivity(intent);
             return true;
-        } /*else if (id == R.id.nav_notification) {
-            Toast.makeText(this, "coming soon...", Toast.LENGTH_SHORT).show();
-        }*/ else if (id == R.id.nav_about_us) {
+        } else if (id == R.id.nav_terms_n_conditions) {
+            intent.setClass(this, TermsConditionsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_about_us) {
             intent.setClass(this, AboutUsActivity.class);
             startActivity(intent);
             return true;
@@ -240,6 +260,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //mGetVillage = false;
             VillageData villageData = new Gson().fromJson(resp, VillageData.class);
             villageListDialog(this, Arrays.asList(villageData.getResult()));
+        } else if (resp.contains("desc") && resp.contains("url")) {
+            BannerImageData bannerImageData = new Gson().fromJson(resp, BannerImageData.class);
+            Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + bannerImageData);
+            LinkedHashMap<String, String> bannerMap = new LinkedHashMap<>();
+            for (BannerImage bannerImage : bannerImageData.getResult()) {
+                bannerMap.put(bannerImage.getDesc(), IWebServices.DOMAIN_NAME + bannerImage.getUrl());
+            }
+            bannerSlider(bannerMap);
+
         } else {
             CategoryData categoryList = new Gson().fromJson(resp, CategoryData.class);
             Log.i(TAG, "networkResponse :: InitializeMain CategoryData::" + categoryList);
@@ -266,6 +295,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface) {
+        Log.i(TAG, "dialogListener::onDismiss::" + selectedVillageList);
+        SharedPreferences preferences = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, selectedVillageList);
+        editor.apply();
     }
 }
 

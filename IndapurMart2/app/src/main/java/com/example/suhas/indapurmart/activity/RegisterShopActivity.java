@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.suhas.indapurmart.R;
+import com.example.suhas.indapurmart.adapter.CategorySpinnerAdapter;
+import com.example.suhas.indapurmart.adapter.SubCategorySpinnerAdapter;
 import com.example.suhas.indapurmart.beans.Category;
 import com.example.suhas.indapurmart.beans.SubCategory;
 import com.example.suhas.indapurmart.beans.Village;
@@ -52,7 +54,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
     private Spinner spinnerVillage;
     private Category[] mCategoryData;
     private List<String> mCategoryList;
-    private List<String> mSubCategoryList;
+    //private List<String> mSubCategoryList;
     private VillageData villageData;
     private Context mContext;
 
@@ -139,7 +141,9 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         params.put("mobileNo", etMobileNumber.getText().toString());
         params.put("address", etShopAddress.getText().toString());
         params.put("shopTiming", etShopTime.getText().toString());
-        String category = "[{" + "\"categoryID\":\"" + spinnerCategory.getSelectedItemId() + "\", \"subCatID\":\"" + spinnerSubCategory.getSelectedItemId() + "\"}]";
+        Category category1 = (Category) spinnerCategory.getSelectedItem();
+        SubCategory subCategory = (SubCategory) spinnerSubCategory.getSelectedItem();
+        String category = "[{" + "\"categoryID\":\"" + category1.getCategoryID() + "\", \"subCatID\":\"" + subCategory.getSubCatID() + "\"}]";
         params.put("category", category);
         String villageName = spinnerVillage.getSelectedItem().toString();
         Village village = null;
@@ -214,37 +218,31 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
 
         switch (adapterView.getId()) {
             case R.id.spinner_category:
-                String categoryName = spinnerCategory.getSelectedItem().toString();
-                if (!categoryName.equals(getString(R.string.msg_select_category))) {
-                    Log.i(TAG, "onItemSelected::inside if");
-                    Category category1 = null;
-                    for (Category category : mCategoryData) {
-                        if (category.getMarCategoryName().equals(categoryName)) {
-                            category1 = category;
-                            break;
-                        }
-                    }
 
-                    if (category1 == null) {
-                        Log.e(TAG, "onItemSelected:: null category1");
-                        return;
-                    }
-                    if (mSubCategoryList == null) {
-                        mSubCategoryList = new ArrayList<>();
-                    } else {
-                        mSubCategoryList.clear();
-                    }
-                    for (SubCategory subCategory : category1.getSubCategory()) {
-                        mSubCategoryList.add(subCategory.getMarSubCatName());
-                    }
-                    Log.i(TAG, "onItemSelected::mSubCategoryList::" + mSubCategoryList.toString());
-                    Log.i(TAG, "onItemSelected::category1::" + category1.toString());
-                    Log.i(TAG, "onItemSelected::");
-                    mSubCategoryList.add(0, getString(R.string.msg_select_sub_category));
-                    spinnerSubCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mSubCategoryList));
-                } else {
-                    Log.i(TAG, "onItemSelected::inside else");
+                Object object = spinnerCategory.getSelectedItem();
+                if (null == object && !(object instanceof Category)) {
+                    Log.i(TAG, "onItemSelected::null or not instance of category");
+                    return;
                 }
+                Category category = (Category) object;
+                Log.i(TAG, "selected category::" + category);
+                if (!category.getMarCategoryName().equals(getString(R.string.msg_select_category))) {
+                    Log.i(TAG, "onItemSelected::inside if");
+                    SubCategory[] subCategories = category.getSubCategory();
+
+                    Log.i(TAG, "onItemSelected::");
+                    SubCategory subCategory = new SubCategory();
+                    subCategory.setMarSubCatName(getString(R.string.msg_select_sub_category));
+                    List<SubCategory> subCategoryList = new ArrayList<>();
+                    subCategoryList.add(subCategory);
+                    for (SubCategory subCategory1 : category.getSubCategory()) {
+                        subCategoryList.add(subCategory1);
+                    }
+                    spinnerSubCategory.setAdapter(new SubCategorySpinnerAdapter(mContext, android.R.layout.simple_spinner_item, subCategoryList));
+                } else {
+                    Log.i(TAG, "onItemSelected::null sub category");
+                }
+
                 break;
             case R.id.spinner_sub_category:
 
@@ -299,15 +297,21 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         if (resp.contains("enCategoryName") && resp.contains("marCategoryName")) {
             CategoryData categoryData = new Gson().fromJson(resp, CategoryData.class);
             mCategoryData = categoryData.getResult();
+            List<Category> tempList = new ArrayList<>();
             if (null == mCategoryList) {
                 mCategoryList = new ArrayList();
             }
             for (Category category : mCategoryData) {
+                tempList.add(category);
                 mCategoryList.add(category.getMarCategoryName());
             }
             mCategoryList.add(0, getString(R.string.msg_select_category));
+            Category category = new Category();
+            category.setMarCategoryName(mContext.getString(R.string.msg_select_category));
 
-            spinnerCategory.setAdapter(new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, mCategoryList));
+            tempList.add(0, category);
+
+            spinnerCategory.setAdapter(new CategorySpinnerAdapter(mContext, android.R.layout.simple_spinner_item, tempList));
         } else if (resp.contains("villageID")) {
 
             villageData = new Gson().fromJson(resp, VillageData.class);
@@ -327,7 +331,7 @@ public class RegisterShopActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void clearFields(){
+    private void clearFields() {
         etMarName.getText().clear();
         etMarShopName.getText().clear();
         etMobileNumber.getText().clear();

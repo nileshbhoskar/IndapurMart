@@ -3,35 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_village_selection"
-        android:title="@string/nav_village_selection"
         android:icon="@drawable/ic_exposure_black"
-        android:iconTint="@android:color/black"/>
+        android:iconTint="@android:color/black"
+        android:title="@string/nav_village_selection" />
     <item
         android:id="@+id/nav_register_shop"
-        android:title="@string/nav_register_shop"
         android:icon="@android:drawable/ic_menu_edit"
-        app:iconTint="@android:color/black"/>
+        android:title="@string/nav_register_shop"
+        app:iconTint="@android:color/black" />
     <item
         android:id="@+id/nav_share_app"
-        android:title="@string/nav_share_app"
         android:icon="@android:drawable/ic_menu_share"
-        app:iconTint="@android:color/black"/>
+        android:title="@string/nav_share_app"
+        app:iconTint="@android:color/black" />
     <item
         android:id="@+id/nav_contact_us"
-        android:title="@string/nav_contact_us"
         android:icon="@android:drawable/ic_menu_info_details"
-        app:iconTint="@android:color/black"/>
-    <!--<item
-        android:id="@+id/nav_notification"
-        android:title="@string/nav_notification" />-->
+        android:title="@string/nav_contact_us"
+        app:iconTint="@android:color/black" />
     <item
         android:id="@+id/nav_about_us"
-        android:title="@string/nav_about_us"
         android:icon="@android:drawable/ic_menu_info_details"
-        app:iconTint="@android:color/black"/>
+        android:title="@string/nav_about_us"
+        app:iconTint="@android:color/black" />
     <item
         android:id="@+id/nav_rate_us"
-        android:title="@string/nav_rate_us"
         android:icon="@android:drawable/star_big_off"
-        app:iconTint="@android:color/black"/>
+        android:title="@string/nav_rate_us"
+        app:iconTint="@android:color/black" />
+    <item
+        android:id="@+id/nav_terms_n_conditions"
+        android:icon="@drawable/ic_t_n_c"
+        android:title="@string/title_terms_conditions"
+        app:iconTint="@android:color/black" />
+
 </menu>

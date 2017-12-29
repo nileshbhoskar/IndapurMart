@@ -33,14 +33,16 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         Toolbar tbUserDetail = findViewById(R.id.tb_owner_details);
+        tbUserDetail.setTitle(mUser.getMarShopName());
         ImageView iv_profile_picture = findViewById(R.id.iv_profile_picture);
         RelativeLayout rl_user_details = findViewById(R.id.rl_user_details);
         TextView tvUserName = findViewById(R.id.tv_owner_name);
         TextView tvAddress = findViewById(R.id.tv_address);
         TextView tvPhone = findViewById(R.id.tv_phone);
-        TextView tvOpenDay = findViewById(R.id.tv_open_day);
+        //TextView tvOpenDay = findViewById(R.id.tv_open_day);
         TextView tvCall = findViewById(R.id.tv_call);
         TextView tvShare = findViewById(R.id.tv_share);
+        TextView tvShopTiming = findViewById(R.id.tv_shop_timing);
         setSupportActionBar(tbUserDetail);
         if (null != getSupportActionBar()) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,16 +51,17 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         tvUserName.setOnClickListener(this);
         tvAddress.setOnClickListener(this);
         tvPhone.setOnClickListener(this);
-        tvOpenDay.setOnClickListener(this);
+        //tvOpenDay.setOnClickListener(this);
         tvCall.setOnClickListener(this);
         tvShare.setOnClickListener(this);
         if (null != mUser) {
             tbUserDetail.setTitle(mUser.getMarShopName());
-            tvUserName.setText(getString(R.string.mar_owner_name,mUser.getMarShopName()));
+            tvUserName.setText(getString(R.string.mar_owner_name,mUser.getMarUserName()));
             tvAddress.setText(mUser.getAddress());
             tvPhone.setText(mUser.getMobileNo());
-            tvOpenDay.setText(mUser.getShopTiming());
+            //tvOpenDay.setText(mUser.getShopTiming());
             tvCall.setText(mUser.getMobileNo());
+            tvShopTiming.setText(mUser.getShopTiming());
         }
     }
 
@@ -73,8 +76,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.tv_phone:
 
                 break;
-            case R.id.tv_open_day:
-                break;
+            /*case R.id.tv_open_day:
+                break;*/
             case R.id.tv_call:
                 intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + mUser.getMobileNo()));

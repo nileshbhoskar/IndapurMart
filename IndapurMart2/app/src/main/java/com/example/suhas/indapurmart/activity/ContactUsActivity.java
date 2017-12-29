@@ -19,7 +19,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us_new);
         Toolbar tbContactUs = findViewById(R.id.tb_contact_us);
-        //TextView tv_contact_us_name = findViewById(R.id.tv_contact_us_name);
+        TextView tv_email_id = findViewById(R.id.tv_email_id);
         TextView tvContactUsNo = findViewById(R.id.tv_contact_us_no);
         TextView tvAppVersion = findViewById(R.id.tv_app_version);
         tbContactUs.setTitle(getString(R.string.contact_us));
@@ -30,7 +30,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
         }
         tvContactUsNo.setOnClickListener(this);
         tvAppVersion.setText(("V " + BuildConfig.VERSION_NAME));
-        //tvContactUsEmail.setOnClickListener(this);
+        tv_email_id.setOnClickListener(this);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
                 intent.setData(Uri.parse("tel:8668911016"));
                 startActivity(intent);
                 break;
-            case R.id.tv_contact_us_email:
+            case R.id.tv_email_id:
                 Intent mailIntent = new Intent(Intent.ACTION_SEND);
                 String[] recipients = {"indapurmart@gmail.com"};
                 mailIntent.putExtra(Intent.EXTRA_EMAIL, recipients);

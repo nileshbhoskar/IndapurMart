@@ -57,6 +57,7 @@ public class SubSubCategoryAdapter extends RecyclerView.Adapter<SubSubCategoryAd
             holder.tvCategoryTitle.setText(mContext.getString(R.string.mar_owner_name,user.getMarUserName()));
             holder.tvShopName.setText(user.getMarShopName());
             holder.tvContactNo.setText(user.getMobileNo());
+            holder.tv_address.setText(user.getAddress());
             holder.rlSubSubCategory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -99,6 +100,7 @@ public class SubSubCategoryAdapter extends RecyclerView.Adapter<SubSubCategoryAd
 
         private TextView tvShopName;
         private TextView tvContactNo;
+        private TextView tv_address;
         private TextView tvCategoryTitle;
         private ImageView ivLiscCall;
         private RelativeLayout rlSubSubCategory;
@@ -107,6 +109,7 @@ public class SubSubCategoryAdapter extends RecyclerView.Adapter<SubSubCategoryAd
             super(itemView);
             ivLiscCall = itemView.findViewById(R.id.iv_lisc_call);
             tvShopName = itemView.findViewById(R.id.tv_shop_name);
+            tv_address = itemView.findViewById(R.id.tv_address);
             tvContactNo = itemView.findViewById(R.id.tv_contact_no);
             tvCategoryTitle = itemView.findViewById(R.id.tv_sub_category_title);
             rlSubSubCategory = itemView.findViewById(R.id.rl_sub_sub_category);

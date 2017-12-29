@@ -98,11 +98,7 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
                     .load(IWebServices.DOMAIN_NAME + categoryImgURL)
                     .into(ivBanner);
         }
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
         SharedPreferences preferences = getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
         String villageList = "[]";
         /*Set<String> villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
@@ -121,6 +117,12 @@ public class ServiceProvidersActivity extends AppCompatActivity implements IResp
         params.put(HEADER_KEY_SUB_CAT_ID, subCatId);
         params.put(HEADER_KEY_VILLAGE_ID, villageList);
         networkRequests.webRequestPOSTString(this, IWebServices.URL_VILLAGES_USER_DATA, params, getString(R.string.dialog_msg_loading_data), true, this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     @Override

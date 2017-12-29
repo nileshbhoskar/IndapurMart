@@ -21,5 +21,6 @@ public interface IWebServices {
     String URL_IMAGE = FINAL_URL + "image" + URL_DIVIDER;
     String URL_SAVE_VILLAGES_USERDATA = FINAL_URL + "savevillagesuserdata";
     String URL_CATEGORIES = FINAL_URL + "categories";
+    String URL_ADD_WORLD = FINAL_URL + "addworld";
 
 }

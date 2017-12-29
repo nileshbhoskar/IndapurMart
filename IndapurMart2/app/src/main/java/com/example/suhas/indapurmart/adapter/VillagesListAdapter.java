@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 
 import com.example.suhas.indapurmart.R;
+import com.example.suhas.indapurmart.activity.MainActivity;
 import com.example.suhas.indapurmart.beans.Village;
 import com.example.suhas.indapurmart.common.ICommonConstants;
 
@@ -19,7 +20,6 @@ import java.util.Set;
 
 /**
  * Created by bhoskar1 on 12/10/17.
- *
  */
 
 public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapter.VillageHolder> {
@@ -48,7 +48,7 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
 
     @Override
     public int getItemCount() {
-        if (null != mDataList){
+        if (null != mDataList) {
             return mDataList.size();
         }
         return 0;
@@ -69,20 +69,18 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                 Log.e(TAG, "Found null village");
                 return;
             }
-            Log.i(TAG,"Village ::" + village);
+            Log.i(TAG, "Village ::" + village);
             this.village = village;
             cbSelectedVillage.setText(village.getMarVillageName());
             cbSelectedVillage.setOnClickListener(this);
-            if (village.isSelected()){
-                Log.i(TAG,"Village ::settingSelected::" + village.getVillageID());
-
+            if (village.isSelected()) {
+                Log.i(TAG, "Village::selected::" + village.getVillageID());
                 cbSelectedVillage.setChecked(true);
-            } else if (village.isSelected()){
+            } /*else if (village.isSelected()){
                 cbSelectedVillage.setChecked(false);
-
-            } else {
+            } */ else {
+                Log.i(TAG, "Village::NOT Selected::" + village.getVillageID());
                 cbSelectedVillage.setChecked(false);
-
             }
         }
 
@@ -90,27 +88,28 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.cb_village:
-                    SharedPreferences preferences = mContext.getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, mContext.MODE_PRIVATE);
+                    /*SharedPreferences preferences = mContext.getSharedPreferences(ICommonConstants.KEY_SHARED_PREFERENCES, mContext.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     if (cbSelectedVillage.isChecked()) {
                         Set<String> villageSet;
-                        Log.i(TAG,"Select village::" + village.getMarVillageName());
+                        Log.i(TAG, "Select village::" + village.getMarVillageName());
                         if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
-                            Log.i(TAG,"Select if contains key::");
+                            Log.i(TAG, "Select if contains key::");
                             villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
                             villageSet.add(village.getVillageID());
                             editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
                         } else {
-                            Log.i(TAG,"Select else not contains key::");
+                            Log.i(TAG, "Select else not contains key::");
                             villageSet = new HashSet<>();
                             editor.putStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, villageSet);
                         }
+                        village.setSelected(true);
                         editor.apply();
-                    } else if (!cbSelectedVillage.isChecked()){
+                    } else if (!cbSelectedVillage.isChecked()) {
                         Set<String> villageSet;
-                        Log.i(TAG,"unSelect village::" + village.getMarVillageName());
+                        Log.i(TAG, "unSelect village::" + village.getMarVillageName());
                         if (preferences.contains(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST)) {
-                            Log.i(TAG,"unSelect if contains key::");
+                            Log.i(TAG, "unSelect if contains key::");
                             villageSet = preferences.getStringSet(ICommonConstants.KEY_PREFERENCES_VILLAGE_LIST, null);
                             if (villageSet != null) {
                                 villageSet.remove(village.getVillageID());
@@ -118,6 +117,18 @@ public class VillagesListAdapter extends RecyclerView.Adapter<VillagesListAdapte
                             }
                         }
                         editor.apply();
+                        village.setSelected(false);
+                    }*/
+
+                    if (null == MainActivity.selectedVillageList){
+                        MainActivity.selectedVillageList = new HashSet<>();
+                    }
+                    if (cbSelectedVillage.isChecked()) {
+                        MainActivity.selectedVillageList.add(village.getMarVillageName());
+                        village.setSelected(true);
+                    } else if (!cbSelectedVillage.isChecked()) {
+                        village.setSelected(false);
+                        MainActivity.selectedVillageList.remove(village.getMarVillageName());
                     }
                     break;
             }
